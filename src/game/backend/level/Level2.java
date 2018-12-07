@@ -10,6 +10,7 @@ import game.backend.element.Wall;
 public class Level2 extends Grid {
     private static int REQUIRED_SCORE = 50000;
     private static int MAX_MOVES = 20;
+    private static int GAP_ROW = 4;
 
     private Cell wallCell;
     private Cell gapCell;
@@ -37,7 +38,7 @@ public class Level2 extends Grid {
 
         //gaps
         for (int j = 1; j < SIZE-1; j++) {
-            g()[3][j].setContent(new Gap());
+            g()[GAP_ROW][j].setContent(new Gap());
         }
         //upper line cells
         for (int j = 1; j < SIZE-1; j++) {
