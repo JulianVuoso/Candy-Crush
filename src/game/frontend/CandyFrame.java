@@ -15,7 +15,7 @@ import javafx.util.Duration;
 
 public class CandyFrame extends VBox {
 
-	private static final int CELL_SIZE = 65;
+	private static final int CELL_SIZE = 80;
 
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
