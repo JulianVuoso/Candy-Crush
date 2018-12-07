@@ -53,7 +53,7 @@ public class CandyFrame extends VBox {
 						Image image1 = images.getImage(element);
 						Image image2 = images.getImage(new Jelly());
 						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, null)));
-						if(cell.hasJelly()){
+						if(!cell.hasJelly()){
 							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image1)));
 						}
 						else{
@@ -102,9 +102,10 @@ public class CandyFrame extends VBox {
 	}
 
 	private Point2D translateCoords(double x, double y) {
-		double j = x / CELL_SIZE;
-		double i = y / CELL_SIZE - 0.5;
-		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize() && !game.get((int)i, (int)j).getContent().isHole()) ? new Point2D(i, j) : null;
+		double i = x / CELL_SIZE;
+		double j = y / CELL_SIZE - 0.5;
+		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize() && !game.get((int)i, (int)j).getContent().isHole()) ? new Point2D(j, i) : null;
+
 	}
 
 }
