@@ -37,7 +37,7 @@ public class CandyFrame extends VBox {
 			@Override
 			public void gridUpdated() {
 				Timeline timeLine = new Timeline();
-				Duration frameGap = Duration.millis(100);
+				Duration frameGap = Duration.millis(500);
 				Duration frameTime = Duration.ZERO;
 				for (int i = game().getSize() - 1; i >= 0; i--) {
 					for (int j = game().getSize() - 1; j >= 0; j--) {
@@ -92,7 +92,7 @@ public class CandyFrame extends VBox {
 
 	private Point2D translateCoords(double x, double y) {
 		double i = x / CELL_SIZE;
-		double j = y / CELL_SIZE;
+		double j = y / CELL_SIZE - 0.5;
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize()) ? new Point2D(j, i) : null;
 	}
 
