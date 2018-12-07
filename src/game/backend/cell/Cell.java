@@ -77,8 +77,17 @@ public class Cell {
 	}
 
 	public boolean fallUpperContent() {
+
+		if (!this.isEmpty()) {
+			return false;
+		}
+
 		Cell up = around[Direction.UP.ordinal()];
-		if (this.isEmpty() && !up.isEmpty() && up.isMovable()) {
+		if (up.isHole()) {
+			up = up.around[Direction.UP.ordinal()];
+		}
+
+		if (!up.isEmpty() && up.isMovable()) {
 			this.content = up.getAndClearContent();
 			grid.wasUpdated();
 			if (this.hasFloor()) {
@@ -88,20 +97,6 @@ public class Cell {
 				Cell down = around[Direction.DOWN.ordinal()];
 				return down.fallUpperContent();
 			}
-		}
-		else if (up.isHole()){
-            Cell upup = up.around[Direction.UP.ordinal()];
-            if (this.isEmpty() && !upup.isEmpty() && upup.isMovable()) {
-                this.content = upup.getAndClearContent();
-                grid.wasUpdated();
-                if (this.hasFloor()) {
-                    grid.tryRemove(this);
-                    return true;
-                } else {
-                    Cell down = around[Direction.DOWN.ordinal()];
-                    return down.fallUpperContent();
-                }
-            }
 		}
 		return false;
 	}

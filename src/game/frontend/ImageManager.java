@@ -17,9 +17,9 @@ public class ImageManager {
 		HorizontalStripedCandy hc = new HorizontalStripedCandy();
 		images = new HashMap<>();
 		images.put(new Nothing().getKey(), new Image(IMAGE_PATH + "nothing.png"));
-		images.put(new Bomb().getKey(),  new Image(IMAGE_PATH + "BlackBox.png"));
+		images.put(new Bomb().getKey(),  new Image(IMAGE_PATH + "bomb.png"));
 		images.put(new Wall().getKey(),  new Image(IMAGE_PATH + "wall.png"));
-		images.put(new Gap().getKey(),  new Image(IMAGE_PATH + "GoldTubo.png"));
+		images.put(new Gap().getKey(),  new Image(IMAGE_PATH + "gap.png"));
 		for (CandyColor cc: CandyColor.values()) {
 			images.put(new Candy(cc).getFullKey(),   new Image(IMAGE_PATH + cc.toString().toLowerCase() + "Candy.png"));
 		}

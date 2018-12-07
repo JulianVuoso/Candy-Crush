@@ -37,6 +37,8 @@ public class Level2 extends Grid {
 
         //gaps
         g()[3][0].setContent(new Gap());
+        g()[3][1].setContent(new Gap());
+        g()[3][2].setContent(new Gap());
 
         //upper line cells
         for (int j = 1; j < SIZE-1; j++) {
