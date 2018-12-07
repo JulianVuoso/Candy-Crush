@@ -90,11 +90,22 @@ public class Cell {
 			}
 		}
 		else if (up.isHole()){
-			up.fallUpperContent();
+            Cell upup = up.around[Direction.UP.ordinal()];
+            if (this.isEmpty() && !upup.isEmpty() && upup.isMovable()) {
+                this.content = upup.getAndClearContent();
+                grid.wasUpdated();
+                if (this.hasFloor()) {
+                    grid.tryRemove(this);
+                    return true;
+                } else {
+                    Cell down = around[Direction.DOWN.ordinal()];
+                    return down.fallUpperContent();
+                }
+            }
 		}
 		return false;
 	}
-	
+
 	public void setContent(Element content) {
 		this.content = content;
 	}
