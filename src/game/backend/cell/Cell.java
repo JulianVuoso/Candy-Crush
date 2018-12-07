@@ -56,7 +56,7 @@ public class Cell {
 		if (content.isMovable()) {
 			Direction[] explosionCascade = content.explode();
 			grid.cellExplosion(content);
-			if (hasJelly()){
+			if (hasJelly() && grid.isStarted()){
 				shiftJelly();
                 grid.state().removeJelly();
 			}

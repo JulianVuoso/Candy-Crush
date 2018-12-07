@@ -23,6 +23,7 @@ public abstract class Grid {
 	private List<GameListener> listeners = new ArrayList<>();
 	private MoveMaker moveMaker;
 	private FigureDetector figureDetector;
+	private boolean start = false;
 	
 	protected abstract GameState newState();
 	protected abstract void fillCells();
@@ -46,7 +47,10 @@ public abstract class Grid {
 		}
 		fillCells();
 		fallElements();
+		start = true;
 	}	
+
+	public boolean isStarted(){ return start; }
 
 	public Element get(int i, int j) {
 		return g[i][j].getContent();
