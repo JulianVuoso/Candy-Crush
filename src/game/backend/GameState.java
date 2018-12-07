@@ -4,7 +4,7 @@ public abstract class GameState {
 	
 	private long score = 0;
 	private int moves = 0;
-	private int jellys = 0;
+	protected int jellyCount = 0;
 	
 	public void addScore(long value) {
 		this.score = this.score + value;
@@ -27,9 +27,8 @@ public abstract class GameState {
 	public abstract boolean playerWon();
 
 	public void removeJelly(){
-		if (jellys == 0){
-
+		if (jellyCount != 0){
+			jellyCount--;
 		}
 	}
-
 }

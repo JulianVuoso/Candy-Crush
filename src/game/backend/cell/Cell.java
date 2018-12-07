@@ -58,7 +58,7 @@ public class Cell {
 			grid.cellExplosion(content);
 			if (hasJelly()){
 				shiftJelly();
-
+                grid.state().removeJelly();
 			}
 			this.content = new Nothing();
 			if (explosionCascade != null) {

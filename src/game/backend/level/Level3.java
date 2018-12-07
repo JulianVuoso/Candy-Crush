@@ -82,7 +82,6 @@ public class Level3 extends Grid {
     private class Level3State extends GameState {
         private long requiredScore;
         private long maxMoves;
-        private int jellyCount;
 
         public Level3State(long requiredScore, int maxMoves, int jellyCount) {
             this.requiredScore = requiredScore;
