@@ -13,7 +13,11 @@ public abstract class GameState {
 	public long getScore(){
 		return score;
 	}
-	
+
+	public int getJellyCount(){
+		return jellyCount;
+	}
+
 	public void addMove() {
 		moves++;
 	}

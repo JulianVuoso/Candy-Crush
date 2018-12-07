@@ -43,7 +43,11 @@ public class CandyGame implements GameListener {
 	public long getScore() {
 		return state.getScore();
 	}
-	
+
+	public int getJellys() {
+		return state.getJellyCount();
+	}
+
 	public boolean isFinished() {
 		return state.gameOver();
 	}
