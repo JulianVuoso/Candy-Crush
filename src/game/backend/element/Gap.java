@@ -7,4 +7,7 @@ public class Gap extends Element {
 
     @Override
     public String getKey() { return "GAP"; }
+
+    @Override
+    public boolean isHole() { return true; }
 }

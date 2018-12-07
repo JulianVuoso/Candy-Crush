@@ -35,6 +35,10 @@ public class Cell {
 		return !content.isSolid();
 	}
 
+	public boolean isHole() {
+		return content.isHole();
+	}
+
 	public Element getContent() {
 		return content;
 	}
@@ -84,7 +88,10 @@ public class Cell {
 				Cell down = around[Direction.DOWN.ordinal()];
 				return down.fallUpperContent();
 			}
-		} 
+		}
+		else if (up.isHole()){
+			up.fallUpperContent();
+		}
 		return false;
 	}
 	
