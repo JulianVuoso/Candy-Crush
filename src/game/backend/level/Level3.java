@@ -40,9 +40,11 @@ public class Level3 extends Grid {
         g()[SIZE-1][0].setAround(g()[SIZE-2][0], wallCell, wallCell, g()[SIZE-1][1]);
         g()[SIZE-1][SIZE-1].setAround(g()[SIZE-2][SIZE-1], wallCell, g()[SIZE-1][SIZE-2], wallCell);
 
-        //gaps
-        for (int j = 1; j < SIZE-1; j++) {
-            g()[GAP_ROW][j].setContent(new Gap());
+        //central cells jelly
+        for (int i = 2; i < SIZE-2; i++) {
+            for (int j = 2; j < SIZE-2; j++) {
+                g()[i][j].shiftJelly();
+            }
         }
         //upper line cells
         for (int j = 1; j < SIZE-1; j++) {

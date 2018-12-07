@@ -57,7 +57,8 @@ public class CandyFrame extends VBox {
 							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image1)));
 						}
 						else{
-							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image1, image2)));
+							//timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image1, image2)));
+							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image1)));
 						}
 					}
 					frameTime = frameTime.add(frameGap);
