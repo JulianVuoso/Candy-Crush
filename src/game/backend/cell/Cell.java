@@ -28,7 +28,7 @@ public class Cell {
 		return jelly;
 	}
 
-	public void shifthJelly() {
+	public void shiftJelly() {
 		jelly = !jelly;
 	}
 

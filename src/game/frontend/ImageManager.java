@@ -20,6 +20,7 @@ public class ImageManager {
 		images.put(new Bomb().getKey(),  new Image(IMAGE_PATH + "bomb.png"));
 		images.put(new Wall().getKey(),  new Image(IMAGE_PATH + "wall.png"));
 		images.put(new Gap().getKey(),  new Image(IMAGE_PATH + "gap.png"));
+		images.put(new Jelly().getKey(),  new Image(IMAGE_PATH + "jelly.png"));
 		for (CandyColor cc: CandyColor.values()) {
 			images.put(new Candy(cc).getFullKey(),   new Image(IMAGE_PATH + cc.toString().toLowerCase() + "Candy.png"));
 		}
