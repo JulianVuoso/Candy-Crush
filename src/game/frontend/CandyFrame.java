@@ -25,7 +25,9 @@ public class CandyFrame extends VBox {
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
 	private ImageManager images;
-	private Point2D lastPoint;
+	private Point2D dragPoint = null;
+
+	private Point2D clickPoint = null;
 	private CandyGame game;
 
 	public CandyFrame(CandyGame game) {
@@ -67,17 +69,20 @@ public class CandyFrame extends VBox {
 			}
 		});
 
-		listener.gridUpdated();
+		addEventHandler(MouseEvent.DRAG_DETECTED, event -> {
+
+			dragPoint = translateCoords(event.getX(), event.getY());
+			if (dragPoint != null && clickPoint == null) {
+				System.out.println("Get start = " + dragPoint);
+			}
+		});
 
 		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			if (lastPoint == null) {
-				lastPoint = translateCoords(event.getX(), event.getY());
-				System.out.println("Get first = " +  lastPoint);
-			} else {
-				Point2D newPoint = translateCoords(event.getX(), event.getY());
-				if (newPoint != null) {
-					System.out.println("Get second = " +  newPoint);
-					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
+			if (dragPoint != null) {
+				clickPoint = translateCoords(event.getX(), event.getY());
+				System.out.println("Get end = " +  clickPoint);
+				if (clickPoint != null) {
+					game().tryMove((int)dragPoint.getX(), (int)dragPoint.getY(), (int)clickPoint.getX(), (int)clickPoint.getY());
 					String message = ((Long)game().getScore()).toString() + " " + game().getJellys();
 					if (game().isFinished()) {
 						if (game().playerWon()) {
@@ -87,10 +92,37 @@ public class CandyFrame extends VBox {
 						}
 					}
 					scorePanel.updateScore(message);
-					lastPoint = null;
 				}
+				clickPoint = null;
+				dragPoint = null;
+			} else {
+				System.out.println("You have to drag and drop");
 			}
-		});
+	});
+		listener.gridUpdated();
+
+//		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+//			if (lastPoint == null) {
+//				lastPoint = translateCoords(event.getX(), event.getY());
+//				System.out.println("Get first = " +  lastPoint);
+//			} else {
+//				Point2D newPoint = translateCoords(event.getX(), event.getY());
+//				if (newPoint != null) {
+//					System.out.println("Get second = " +  newPoint);
+//					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
+//					String message = ((Long)game().getScore()).toString() + " " + game().getJellys();
+//					if (game().isFinished()) {
+//						if (game().playerWon()) {
+//							message = message + " Finished - Player Won!";
+//						} else {
+//							message = message + " Finished - Loser !";
+//						}
+//					}
+//					scorePanel.updateScore(message);
+//					lastPoint = null;
+//				}
+//			}
+//		});
 
 	}
 
