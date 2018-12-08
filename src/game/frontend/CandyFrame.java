@@ -9,12 +9,8 @@ import game.backend.element.Jelly;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
-import javafx.scene.Group;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -41,6 +37,7 @@ public class CandyFrame extends VBox {
 		game.initGame();
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
+
 			@Override
 			public void gridUpdated() {
 				Timeline timeLine = new Timeline();
@@ -53,6 +50,8 @@ public class CandyFrame extends VBox {
 						Cell cell = CandyFrame.this.game.get(i, j);
 						Element element = cell.getContent();
 						Image image = images.getImage(element);
+						// corregir esto
+
 						if(!cell.hasJelly()) {
 							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, null)));
 						} else {
@@ -63,6 +62,7 @@ public class CandyFrame extends VBox {
 				}
 				timeLine.play();
 			}
+
 			@Override
 			public void cellExplosion(Element e) {
 				//
@@ -70,7 +70,6 @@ public class CandyFrame extends VBox {
 		});
 
 		addEventHandler(MouseEvent.DRAG_DETECTED, event -> {
-
 			dragPoint = translateCoords(event.getX(), event.getY());
 			if (dragPoint != null && clickPoint == null) {
 				System.out.println("Get start = " + dragPoint);
@@ -78,52 +77,30 @@ public class CandyFrame extends VBox {
 		});
 
 		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			if (dragPoint != null) {
-				clickPoint = translateCoords(event.getX(), event.getY());
-				System.out.println("Get end = " +  clickPoint);
-				if (clickPoint != null) {
-					game().tryMove((int)dragPoint.getX(), (int)dragPoint.getY(), (int)clickPoint.getX(), (int)clickPoint.getY());
-					String message = ((Long)game().getScore()).toString() + " " + game().getJellys();
-					if (game().isFinished()) {
-						if (game().playerWon()) {
-							message = message + " Finished - Player Won!";
-						} else {
-							message = message + " Finished - Loser !";
-						}
-					}
-					scorePanel.updateScore(message);
-				}
-				clickPoint = null;
-				dragPoint = null;
-			} else {
+			if (dragPoint == null) {
 				System.out.println("You have to drag and drop");
+				return;
 			}
-	});
+
+			clickPoint = translateCoords(event.getX(), event.getY());
+			System.out.println("Get end = " +  clickPoint);
+
+			if (clickPoint != null) {
+				game().tryMove((int)dragPoint.getX(), (int)dragPoint.getY(), (int)clickPoint.getX(), (int)clickPoint.getY());
+				String message = ((Long)game().getScore()).toString() + " " + game().getJellys();
+				if (game().isFinished()) {
+					if (game().playerWon()) {
+						message = message + " Finished - Player Won!";
+					} else {
+						message = message + " Finished - Loser !";
+					}
+				}
+				scorePanel.updateScore(message);
+			}
+			clickPoint = null;
+			dragPoint = null;
+		});
 		listener.gridUpdated();
-
-//		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-//			if (lastPoint == null) {
-//				lastPoint = translateCoords(event.getX(), event.getY());
-//				System.out.println("Get first = " +  lastPoint);
-//			} else {
-//				Point2D newPoint = translateCoords(event.getX(), event.getY());
-//				if (newPoint != null) {
-//					System.out.println("Get second = " +  newPoint);
-//					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
-//					String message = ((Long)game().getScore()).toString() + " " + game().getJellys();
-//					if (game().isFinished()) {
-//						if (game().playerWon()) {
-//							message = message + " Finished - Player Won!";
-//						} else {
-//							message = message + " Finished - Loser !";
-//						}
-//					}
-//					scorePanel.updateScore(message);
-//					lastPoint = null;
-//				}
-//			}
-//		});
-
 	}
 
 	private CandyGame game() {
@@ -134,7 +111,5 @@ public class CandyFrame extends VBox {
 		double i = x / CELL_SIZE;
 		double j = y / CELL_SIZE - 0.5;
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize() && !game.get((int)j, (int)i).getContent().isHole()) ? new Point2D(j, i) : null;
-
 	}
-
 }
