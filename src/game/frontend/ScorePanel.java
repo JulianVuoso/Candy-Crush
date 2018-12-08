@@ -8,9 +8,9 @@ public class ScorePanel extends BorderPane {
 
 	private Label scoreLabel;
 
-	public ScorePanel() {
+	public ScorePanel(String initial) {
 		setStyle("-fx-background-color: #5490ff");
-		scoreLabel = new Label("0");
+		scoreLabel = new Label(initial);
 		scoreLabel.setAlignment(Pos.CENTER);
 		scoreLabel.setStyle("-fx-font-size: 24");
 		setCenter(scoreLabel);
