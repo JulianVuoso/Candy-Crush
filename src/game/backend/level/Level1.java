@@ -28,11 +28,12 @@ public class Level1 extends Grid {
 		
 		public Level1State(long requiredScore, int maxMoves) {
 			this.requiredScore = requiredScore;
+			setMoves(maxMoves);
 			this.maxMoves = maxMoves;
 		}
 		
 		public boolean gameOver() {
-			return playerWon() || getMoves() >= maxMoves;
+			return playerWon() || getMoves() <= 0;
 		}
 		
 		public boolean playerWon() {

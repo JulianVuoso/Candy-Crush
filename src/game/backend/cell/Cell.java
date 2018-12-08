@@ -65,7 +65,7 @@ public class Cell {
 			grid.cellExplosion(content);
 			if (hasExtra() && grid.isStarted()){
 				breakExtra();
-                grid.state().removeJelly();
+                grid.removeExtra();
 			}
 			this.content = new Nothing();
 			if (explosionCascade != null) {

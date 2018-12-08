@@ -4,8 +4,8 @@ public abstract class GameState {
 	
 	private long score = 0;
 	private int moves = 0;
-	protected int jellyCount = 0;
-	
+	protected int extraCount = 0;
+
 	public void addScore(long value) {
 		this.score = this.score + value;
 	}
@@ -15,15 +15,17 @@ public abstract class GameState {
 	}
 
 	public String getStatus(){
-		return String.valueOf(getScore());
+		return String.format("Moves: %d\t%d", moves, score);
 	}
 
-	public void setJellyCount(int jellyCount){
-		this.jellyCount = jellyCount;
+	public void setExtraCount(int extraCount){
+		this.extraCount = extraCount;
 	}
+
+	public void setMoves(int moves){ this.moves = moves; }
 
 	public void addMove() {
-		moves++;
+		moves--;
 	}
 	
 	public int getMoves() {
@@ -34,9 +36,9 @@ public abstract class GameState {
 	
 	public abstract boolean playerWon();
 
-	public void removeJelly(){
-		if (jellyCount != 0){
-			jellyCount--;
+	public void removeExtra(){
+		if (extraCount != 0){
+			extraCount--;
 		}
 	}
 }

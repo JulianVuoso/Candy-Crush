@@ -34,8 +34,12 @@ public abstract class Grid {
 		return g;
 	}
 	
-	public GameState state(){
+	protected GameState state(){
 		return state;
+	}
+
+	public void removeExtra(){
+		state.removeExtra();
 	}
 	
 	public void initialize() {

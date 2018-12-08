@@ -25,7 +25,7 @@ public class Level3 extends Grid {
         }
         g()[(SIZE-1)/2][0].setExtra(new Jelly());
         g()[(SIZE-1)/2][SIZE-1].setExtra(new Jelly());
-        state().setJellyCount(72);
+        state().setExtraCount(72);
        super.fillCells();
     }
 
@@ -44,21 +44,21 @@ public class Level3 extends Grid {
 
         public Level3State(long requiredScore, int maxMoves) {
             this.requiredScore = requiredScore;
-            this.maxMoves = maxMoves;
-            jellyCount = 0;
+            setMoves(maxMoves);
+            extraCount = 0;
         }
 
         public boolean gameOver() {
-            return playerWon() || getMoves() >= maxMoves;
+            return playerWon() || getMoves() <= 0;
         }
 
         public boolean playerWon() {
-            return super.getScore() > requiredScore && jellyCount == 0;
+            return super.getScore() > requiredScore && extraCount == 0;
         }
 
         @Override
         public String getStatus(){
-            return super.getStatus() + "\tJellyCount: " + jellyCount;
+            return super.getStatus() + "\tJellyCount: " + extraCount;
         }
     }
 }
