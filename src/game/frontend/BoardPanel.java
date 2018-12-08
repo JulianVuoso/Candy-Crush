@@ -25,15 +25,6 @@ public class BoardPanel extends TilePane {
 			}
 		}
 	}
-	
-	public void setImage(int row, int column, Image image1, Image image2) {
-		ImageView top = new ImageView(image2);
-		ImageView bottom = new ImageView(image1);
-		top.setBlendMode(BlendMode.ADD);
-		Group blend = new Group(bottom, top);
-		cells[row][column].getChildren().clear();
-		cells[row][column].getChildren().addAll(blend);
-	}
 
 	public void setImage(int row, int column, Group blend){
 		cells[row][column].getChildren().clear();

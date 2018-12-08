@@ -2,7 +2,6 @@ package game.backend;
 
 import game.backend.cell.Cell;
 import game.backend.element.Element;
-import game.backend.level.Level1;
 
 public class CandyGame implements GameListener {
 	
@@ -45,10 +44,6 @@ public class CandyGame implements GameListener {
 	
 	public String getStatus() {
 		return state.getStatus();
-	}
-
-	public int getJellys() {
-		return state.getJellyCount();
 	}
 
 	public boolean isFinished() {

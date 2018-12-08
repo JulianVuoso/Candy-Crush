@@ -11,9 +11,7 @@ public class Cell {
 	private Grid grid;
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
-	private boolean jelly = false;
-
-	private Element extra = new Jelly();
+	private Element extra;
 	
 	public Cell(Grid grid) {
 		this.grid = grid;
@@ -27,12 +25,16 @@ public class Cell {
 		this.around[Direction.RIGHT.ordinal()] = right;
 	}
 
-	public boolean hasJelly() {
-		return jelly;
+	public boolean hasExtra() {
+		return extra != null;
 	}
 
-	public void shiftJelly() {
-		jelly = !jelly;
+	public void setExtra(Element e) {
+		extra = e;
+	}
+
+	public void breakExtra() {
+		extra = null;
 	}
 
 	public boolean hasFloor() {
@@ -61,8 +63,8 @@ public class Cell {
 		if (content.isMovable()) {
 			Direction[] explosionCascade = content.explode();
 			grid.cellExplosion(content);
-			if (hasJelly() && grid.isStarted()){
-				shiftJelly();
+			if (hasExtra() && grid.isStarted()){
+				breakExtra();
                 grid.state().removeJelly();
 			}
 			this.content = new Nothing();
@@ -101,9 +103,7 @@ public class Cell {
 		}
 
 		Cell up = around[Direction.UP.ordinal()];
-		if (up.isHole()) {
-			up = up.around[Direction.UP.ordinal()];
-		}
+		if (up.isHole()) up = up.around[Direction.UP.ordinal()];
 
 		if (!up.isEmpty() && up.isMovable()) {
 			this.content = up.getAndClearContent();
