@@ -2,6 +2,7 @@ package game.backend;
 
 import game.backend.cell.Cell;
 import game.backend.element.Element;
+import game.backend.level.Level1;
 
 public class CandyGame implements GameListener {
 	
@@ -12,6 +13,8 @@ public class CandyGame implements GameListener {
 	public CandyGame(Class<?> clazz) {
 		this.levelClass = clazz;
 	}
+	public CandyGame() { }
+	public void setLevelClass(Class<?> clazz){this.levelClass = clazz;}
 	
 	public void initGame() {
 		try {

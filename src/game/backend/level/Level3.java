@@ -7,13 +7,10 @@ import game.backend.cell.Cell;
 import game.backend.element.Gap;
 import game.backend.element.Wall;
 
-/**
- * Created by njtallar on 07/12/18.
- */
 public class Level3 extends Grid {
+
     private static int REQUIRED_SCORE = 5000;
     private static int MAX_MOVES = 20;
-    private static int GAP_ROW = 4;
     private static int INITIAL_JELLY_COUNT = 25;
 
     private Cell wallCell;
