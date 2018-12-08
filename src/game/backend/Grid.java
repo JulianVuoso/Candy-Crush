@@ -80,6 +80,7 @@ public abstract class Grid {
 	
 	public void clearContent(int i, int j) {
 		g[i][j].clearContent();
+		wasUpdated();
 	}
 	
 	public void setContent(int i, int j, Element e) {

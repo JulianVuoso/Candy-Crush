@@ -4,8 +4,7 @@ import game.backend.GameState;
 import game.backend.Grid;
 import game.backend.cell.CandyGeneratorCell;
 import game.backend.cell.Cell;
-import game.backend.element.Gap;
-import game.backend.element.Wall;
+import game.backend.element.*;
 
 public class Level2 extends Grid {
     private static int REQUIRED_SCORE = 50000;
@@ -36,6 +35,11 @@ public class Level2 extends Grid {
         g()[SIZE-1][0].setAround(g()[SIZE-2][0], wallCell, wallCell, g()[SIZE-1][1]);
         g()[SIZE-1][SIZE-1].setAround(g()[SIZE-2][SIZE-1], wallCell, g()[SIZE-1][SIZE-2], wallCell);
 
+        Candy test = new HorizontalStripedCandy();
+        test.setColor(CandyColor.GREEN);
+
+        g()[7][7].setContent(test);
+        g()[7][8].setContent(new Bomb());
         //gaps
         for (int j = 1; j < SIZE-1; j++) {
             g()[GAP_ROW][j].setContent(new Gap());
