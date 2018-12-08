@@ -103,9 +103,7 @@ public class Cell {
 		}
 
 		Cell up = around[Direction.UP.ordinal()];
-		if (up.isHole()) {
-			up = up.around[Direction.UP.ordinal()];
-		}
+		if (up.isHole()) up = up.around[Direction.UP.ordinal()];
 
 		if (!up.isEmpty() && up.isMovable()) {
 			this.content = up.getAndClearContent();

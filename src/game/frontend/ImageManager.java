@@ -42,14 +42,9 @@ public class ImageManager {
 		}
 	}
 
-	public Image getImage(Element e) {
-		return images.get(e.getFullKey());
-	}
-
 	public Group getImage(Cell c) {
-		Element extra = c.getExtra();
 		ImageView bottom = new ImageView(images.get(c.getContent().getFullKey()));
-		if (extra != null) { // TODO hasExtra
+		if (c.hasExtra()) {
 			ImageView top = new ImageView(images.get(c.getExtra().getFullKey()));
 			top.setBlendMode(BlendMode.ADD);
 			return new Group(bottom, top);

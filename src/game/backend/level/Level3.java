@@ -6,19 +6,17 @@ import game.backend.element.Jelly;
 
 public class Level3 extends Grid {
 
-    private static int REQUIRED_SCORE = 5000;
-    private static int MAX_MOVES = 20;
-    private static int INITIAL_JELLY_COUNT = 25;
+    private static int REQUIRED_SCORE = 10000;
+    private static int MAX_MOVES = 30;
 
     @Override
     protected GameState newState() {
-        return new Level3.Level3State(REQUIRED_SCORE, MAX_MOVES, INITIAL_JELLY_COUNT);
+        return new Level3.Level3State(REQUIRED_SCORE, MAX_MOVES);
     }
 
     @Override
     protected void fillCells() {
         //central cells jelly
-
         for (int i = 0; i < (SIZE-1)/2; i++) {
             for (int j = i; j < SIZE-i; j++) {
                 g()[i][j].setExtra(new Jelly());
@@ -27,6 +25,7 @@ public class Level3 extends Grid {
         }
         g()[(SIZE-1)/2][0].setExtra(new Jelly());
         g()[(SIZE-1)/2][SIZE-1].setExtra(new Jelly());
+        state().setJellyCount(72);
        super.fillCells();
     }
 
@@ -43,10 +42,10 @@ public class Level3 extends Grid {
         private long requiredScore;
         private long maxMoves;
 
-        public Level3State(long requiredScore, int maxMoves, int jellyCount) {
+        public Level3State(long requiredScore, int maxMoves) {
             this.requiredScore = requiredScore;
             this.maxMoves = maxMoves;
-            this.jellyCount = jellyCount;
+            jellyCount = 0;
         }
 
         public boolean gameOver() {

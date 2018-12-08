@@ -4,24 +4,18 @@ import game.backend.CandyGame;
 import game.backend.GameListener;
 import game.backend.cell.Cell;
 import game.backend.element.Element;
-
-import game.backend.element.Jelly;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.effect.Blend;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-
 import java.util.Optional;
 
-import static game.frontend.GameApp.lvl;
 
 public class CandyFrame extends VBox {
 
@@ -41,8 +35,6 @@ public class CandyFrame extends VBox {
 		images = new ImageManager();
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
 		getChildren().add(boardPanel);
-//		scorePanel = new ScorePanel(game.getStatus());
-//		getChildren().add(scorePanel);
 		game.initGame();
 		scorePanel = new ScorePanel(game.getStatus());
 		getChildren().add(scorePanel);
@@ -52,25 +44,15 @@ public class CandyFrame extends VBox {
 			@Override
 			public void gridUpdated() {
 				Timeline timeLine = new Timeline();
-				Duration frameGap = Duration.millis(250);
+				Duration frameGap = Duration.millis(100);
 				Duration frameTime = Duration.ZERO;
 				for (int i = game().getSize() - 1; i >= 0; i--) {
 					for (int j = game().getSize() - 1; j >= 0; j--) {
 						int finalI = i;
 						int finalJ = j;
 						Cell cell = CandyFrame.this.game.get(i, j);
-						Element element = cell.getContent();
-						Image image = images.getImage(element);
-						// corregir esto
-
 						Group blend = images.getImage(cell);
 						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, blend)));
-
-//						if(!cell.hasJelly()) {
-//							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, null)));
-//						} else {
-//							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, images.getImage(new Jelly()))));
-//						}
 					}
 					frameTime = frameTime.add(frameGap);
 				}

@@ -18,8 +18,8 @@ public abstract class GameState {
 		return String.valueOf(getScore());
 	}
 
-	public int getJellyCount(){
-		return jellyCount;
+	public void setJellyCount(int jellyCount){
+		this.jellyCount = jellyCount;
 	}
 
 	public void addMove() {
