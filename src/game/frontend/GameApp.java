@@ -101,7 +101,7 @@ public class GameApp extends Application {
 					}
 				});
 
-		Scene scene = new Scene(root1, 585,642);
+		Scene scene = new Scene(root1, 585,641);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Candy Crush !");
 		stage = primaryStage;
