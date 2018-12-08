@@ -2,6 +2,7 @@ package game.backend.level;
 
 import game.backend.GameState;
 import game.backend.Grid;
+import game.backend.element.Jelly;
 
 public class Level3 extends Grid {
 
@@ -20,12 +21,12 @@ public class Level3 extends Grid {
 
         for (int i = 0; i < (SIZE-1)/2; i++) {
             for (int j = i; j < SIZE-i; j++) {
-                g()[i][j].shiftJelly();
-                g()[SIZE-1-i][j].shiftJelly();
+                g()[i][j].setExtra(new Jelly());
+                g()[SIZE-1-i][j].setExtra(new Jelly());
             }
         }
-        g()[(SIZE-1)/2][0].shiftJelly();
-        g()[(SIZE-1)/2][SIZE-1].shiftJelly();
+        g()[(SIZE-1)/2][0].setExtra(new Jelly());
+        g()[(SIZE-1)/2][SIZE-1].setExtra(new Jelly());
        super.fillCells();
     }
 

@@ -25,16 +25,16 @@ public class Cell {
 		this.around[Direction.RIGHT.ordinal()] = right;
 	}
 
-	public boolean hasJelly() {
-		return extra instanceof Jelly;
+	public boolean hasExtra() {
+		return extra != null;
 	}
 
-	public void shiftJelly() {
-		if (!hasJelly()){
-		    extra = new Jelly();
-        } else {
-		    extra = null;
-        }
+	public void setExtra(Element e) {
+		extra = e;
+	}
+
+	public void breakExtra() {
+		extra = null;
 	}
 
 	public boolean hasFloor() {
@@ -63,8 +63,8 @@ public class Cell {
 		if (content.isMovable()) {
 			Direction[] explosionCascade = content.explode();
 			grid.cellExplosion(content);
-			if (hasJelly() && grid.isStarted()){
-				shiftJelly();
+			if (hasExtra() && grid.isStarted()){
+				breakExtra();
                 grid.state().removeJelly();
 			}
 			this.content = new Nothing();
