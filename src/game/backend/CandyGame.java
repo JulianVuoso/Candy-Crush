@@ -43,8 +43,8 @@ public class CandyGame implements GameListener {
 		grid.addListener(listener);
 	}
 	
-	public long getScore() {
-		return state.getScore();
+	public String getStatus() {
+		return state.getStatus();
 	}
 
 	public int getJellys() {

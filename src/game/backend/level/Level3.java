@@ -53,7 +53,12 @@ public class Level3 extends Grid {
         }
 
         public boolean playerWon() {
-            return getScore() > requiredScore && jellyCount == 0;
+            return super.getScore() > requiredScore && jellyCount == 0;
+        }
+
+        @Override
+        public String getStatus(){
+            return super.getStatus() + "\tJellyCount: " + jellyCount;
         }
     }
 }
