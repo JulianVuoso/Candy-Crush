@@ -2,6 +2,7 @@ package game.backend.cell;
 
 import game.backend.Grid;
 import game.backend.element.Element;
+import game.backend.element.Jelly;
 import game.backend.element.Nothing;
 import game.backend.move.Direction;
 
@@ -11,6 +12,8 @@ public class Cell {
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
 	private boolean jelly = false;
+
+	private Element extra = new Jelly();
 	
 	public Cell(Grid grid) {
 		this.grid = grid;
@@ -51,7 +54,9 @@ public class Cell {
 	public Element getContent() {
 		return content;
 	}
-	
+
+	public Element getExtra() { return extra; }
+
 	public void clearContent() {
 		if (content.isMovable()) {
 			Direction[] explosionCascade = content.explode();

@@ -9,6 +9,8 @@ import game.backend.element.Jelly;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
+import javafx.scene.effect.Blend;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -32,9 +34,11 @@ public class CandyFrame extends VBox {
 		images = new ImageManager();
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
 		getChildren().add(boardPanel);
-		scorePanel = new ScorePanel();
-		getChildren().add(scorePanel);
+//		scorePanel = new ScorePanel(game.getStatus());
+//		getChildren().add(scorePanel);
 		game.initGame();
+		scorePanel = new ScorePanel(game.getStatus());
+		getChildren().add(scorePanel);
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
 
@@ -52,11 +56,14 @@ public class CandyFrame extends VBox {
 						Image image = images.getImage(element);
 						// corregir esto
 
-						if(!cell.hasJelly()) {
-							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, null)));
-						} else {
-							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, images.getImage(new Jelly()))));
-						}
+						Group blend = images.getImage(cell);
+						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, blend)));
+
+//						if(!cell.hasJelly()) {
+//							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, null)));
+//						} else {
+//							timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, images.getImage(new Jelly()))));
+//						}
 					}
 					frameTime = frameTime.add(frameGap);
 				}

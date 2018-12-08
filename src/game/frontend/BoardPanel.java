@@ -34,4 +34,9 @@ public class BoardPanel extends TilePane {
 		cells[row][column].getChildren().clear();
 		cells[row][column].getChildren().addAll(blend);
 	}
+
+	public void setImage(int row, int column, Group blend){
+		cells[row][column].getChildren().clear();
+		cells[row][column].getChildren().addAll(blend);
+	}
 }
