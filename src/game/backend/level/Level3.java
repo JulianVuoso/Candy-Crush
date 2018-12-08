@@ -7,7 +7,7 @@ import game.backend.element.Jelly;
 public class Level3 extends Grid {
 
     private static int REQUIRED_SCORE = 10000;
-    private static int MAX_MOVES = 30;
+    private static int MAX_MOVES = 3;
 
     @Override
     protected GameState newState() {
@@ -58,7 +58,7 @@ public class Level3 extends Grid {
 
         @Override
         public String getStatus(){
-            return super.getStatus() + "\tJellyCount: " + extraCount;
+            return super.getStatus() + "\t\tJellys: " + extraCount;
         }
     }
 }

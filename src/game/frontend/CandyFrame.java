@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class CandyFrame extends VBox {
 
-	private static final int CELL_SIZE = 65;
+	static final int CELL_SIZE = 65;
 
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
@@ -75,6 +75,11 @@ public class CandyFrame extends VBox {
 		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			if (dragPoint == null) {
 				System.out.println("You have to drag and drop");
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("¡ERROR!");
+				alert.setHeaderText("MOVIMIENTO EQUIVOCADO.");
+				alert.setContentText("Para realizar un movimiento, \ndebe arrastrar de un punto a otro. ");
+				Optional<ButtonType> result = alert.showAndWait();
 				return;
 			}
 

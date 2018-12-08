@@ -15,7 +15,7 @@ public abstract class GameState {
 	}
 
 	public String getStatus(){
-		return String.format("Moves: %d\t%d", moves, score);
+		return String.format("Moves: %d\t\t%d", moves, score);
 	}
 
 	public void setExtraCount(int extraCount){
