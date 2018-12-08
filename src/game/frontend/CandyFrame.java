@@ -8,11 +8,18 @@ import game.backend.element.Element;
 import game.backend.element.Jelly;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+
+import java.util.Optional;
+
+import static game.frontend.GameApp.lvl;
 
 public class CandyFrame extends VBox {
 
@@ -87,12 +94,40 @@ public class CandyFrame extends VBox {
 
 			if (clickPoint != null) {
 				game().tryMove((int)dragPoint.getX(), (int)dragPoint.getY(), (int)clickPoint.getX(), (int)clickPoint.getY());
-				String message = ((Long)game().getScore()).toString() + " " + game().getJellys();
+					String message = ((Long)game().getScore()).toString() + " " + game().getJellys();
 				if (game().isFinished()) {
 					if (game().playerWon()) {
-						message = message + " Finished - Player Won!";
+						message = message + " Puntaje obtenido. ¡Ganaste! ";
+						Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+						alert.setTitle("Nivel ganado");
+						alert.setHeaderText("¡FELICITACIONES! Ha ganado el Nivel");
+						alert.setContentText("¿Desea continuar?");
+						Optional<ButtonType> result = alert.showAndWait();
+						if(result.isPresent()) {
+							if (result.get() == ButtonType.OK) {
+								if (GameApp.lvl < 3){
+									GameApp.level(GameApp.getStage(), GameApp.lvl+1);
+								} else Platform.exit();
+							}
+							if(result.get() == ButtonType.CANCEL){
+								Platform.exit();
+							}
+						}
 					} else {
-						message = message + " Finished - Loser !";
+						message = message + " El Nivel no ha sido superado. ¡Perdiste!";
+						Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+						alert.setTitle("Nivel perdido");
+						alert.setHeaderText("No ha cumplido el objetivo de este Nivel");
+						alert.setContentText("¿Desea volver a intentarlo?\n Presione Cancelar para salir del juego");
+						Optional<ButtonType> result = alert.showAndWait();
+						if(result.isPresent()) {
+							if (result.get() == ButtonType.OK) {
+								GameApp.level(GameApp.getStage(), GameApp.lvl);
+							}
+							if(result.get() == ButtonType.CANCEL){
+								Platform.exit();
+							}
+						}
 					}
 				}
 				scorePanel.updateScore(message);

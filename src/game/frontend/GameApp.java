@@ -33,7 +33,7 @@ public class GameApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		final Image homeScreen = new Image( "images/homebackground.png" );
+		final Image homeScreen = new Image( "images/burblebackground.png" );
 		final ImageView flashScreen_node = new ImageView();
 		flashScreen_node.setImage(homeScreen);
 		primaryStage.getIcons().add(homeScreen);
@@ -46,18 +46,18 @@ public class GameApp extends Application {
 		Button button1 = new Button();
 		Image lvl1 = new Image("images/lvl1.png");
 		button1.setGraphic(new ImageView(lvl1));
-		button1.setLayoutX(380);
-		button1.setLayoutY(440);
+		button1.setLayoutX(130);
+		button1.setLayoutY(460);
 		Button button2 = new Button();
 		Image lvl2 = new Image("images/lvl2.png");
 		button2.setGraphic(new ImageView(lvl2));
-		button2.setLayoutX(380);
-		button2.setLayoutY(500);
+		button2.setLayoutX(130);
+		button2.setLayoutY(540);
 		Button button3 = new Button();
 		Image lvl3 = new Image("images/lvl3.png");
 		button3.setGraphic(new ImageView(lvl3));
-		button3.setLayoutX(380);
-		button3.setLayoutY(560);
+		button3.setLayoutX(130);
+		button3.setLayoutY(620);
 		root1.getChildren().addAll(button1, button2, button3);
 		DropShadow shadow = new DropShadow();
 
@@ -101,16 +101,19 @@ public class GameApp extends Application {
 					}
 				});
 
-		Scene scene = new Scene(root1, 585,642);
+		Scene scene = new Scene(root1, 65*11,774); // 65*11 = 715
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Candy Crush !");
+		primaryStage.setTitle("Candy Crush Saga");
 		stage = primaryStage;
 		primaryStage.show();
+
+		final String CANDY = "Candy Crush Saga - Level ";
 
 		button1.setOnAction(e->{
 			CandyGame game = new CandyGame(Level1.class);
 			CandyFrame frame = new CandyFrame(game);
 			Scene scene2 = new Scene(frame);
+			primaryStage.setTitle( CANDY + "1" );
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene2);
 		});
@@ -118,6 +121,7 @@ public class GameApp extends Application {
 			CandyGame game = new CandyGame(Level2.class);
 			CandyFrame frame = new CandyFrame(game);
 			Scene scene2 = new Scene(frame);
+			primaryStage.setTitle( CANDY + "2" );
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene2);
 		});
@@ -125,14 +129,18 @@ public class GameApp extends Application {
 			CandyGame game = new CandyGame(Level3.class);
 			CandyFrame frame = new CandyFrame(game);
 			Scene scene2 = new Scene(frame);
+			primaryStage.setTitle( CANDY + "3" );
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene2);
 		});
 	}
 
-	public static void level (Stage primaryStage, int level){
+	public static int lvl=1;
+
+	public static void level (Stage primaryStage, int level_in){
+		lvl = level_in;
 		CandyGame game = new CandyGame();
-		switch (level){
+		switch (lvl){
 			case 1: game.setLevelClass(Level1.class); break;
 			case 2: game.setLevelClass(Level2.class); break;
 			case 3: game.setLevelClass(Level3.class); break;
