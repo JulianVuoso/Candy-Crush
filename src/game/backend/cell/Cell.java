@@ -11,9 +11,7 @@ public class Cell {
 	private Grid grid;
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
-	private boolean jelly = false;
-
-	private Element extra = new Jelly();
+	private Element extra;
 	
 	public Cell(Grid grid) {
 		this.grid = grid;
@@ -28,11 +26,15 @@ public class Cell {
 	}
 
 	public boolean hasJelly() {
-		return jelly;
+		return extra instanceof Jelly;
 	}
 
 	public void shiftJelly() {
-		jelly = !jelly;
+		if (!hasJelly()){
+		    extra = new Jelly();
+        } else {
+		    extra = null;
+        }
 	}
 
 	public boolean hasFloor() {
