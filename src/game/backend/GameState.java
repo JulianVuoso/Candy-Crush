@@ -14,6 +14,10 @@ public abstract class GameState {
 		return score;
 	}
 
+	public String getStatus(){
+		return String.valueOf(getScore());
+	}
+
 	public int getJellyCount(){
 		return jellyCount;
 	}
