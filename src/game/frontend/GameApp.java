@@ -10,9 +10,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -43,61 +46,71 @@ public class GameApp extends Application {
 		Pane root1 = new Pane();
 		root1.getChildren().addAll(flashScreen_node);
 
+        DropShadow bshadow = new DropShadow();
+
 		Button button1 = new Button();
-		Image lvl1 = new Image("images/lvl1.png");
+		Image lvl1 = new Image("images/lvl1#y.png");
 		button1.setGraphic(new ImageView(lvl1));
 		button1.setLayoutX(130);
 		button1.setLayoutY(460);
-		Button button2 = new Button();
-		Image lvl2 = new Image("images/lvl2.png");
+        button1.setStyle("-fx-background-color: transparent");
+        button1.setEffect(bshadow);
+
+        Button button2 = new Button();
+		Image lvl2 = new Image("images/lvl2#y.png");
 		button2.setGraphic(new ImageView(lvl2));
 		button2.setLayoutX(130);
 		button2.setLayoutY(540);
-		Button button3 = new Button();
-		Image lvl3 = new Image("images/lvl3.png");
+        button2.setStyle("-fx-background-color: transparent");
+        button2.setEffect(bshadow);
+
+        Button button3 = new Button();
+		Image lvl3 = new Image("images/lvl3#y.png");
 		button3.setGraphic(new ImageView(lvl3));
 		button3.setLayoutX(130);
 		button3.setLayoutY(620);
-		root1.getChildren().addAll(button1, button2, button3);
-		DropShadow shadow = new DropShadow();
+        button3.setStyle("-fx-background-color: transparent");
+        button3.setEffect(bshadow);
+
+        root1.getChildren().addAll(button1, button2, button3);
 
 		button1.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
 					@Override public void handle(MouseEvent e) {
-						button1.setEffect(shadow);
+						button1.setEffect(null);
 					}
 				});
 
 		button1.addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
 					@Override public void handle(MouseEvent e) {
-						button1.setEffect(null);
+						button1.setEffect(bshadow);
 					}
 				});
 		button2.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
 					@Override public void handle(MouseEvent e) {
-						button2.setEffect(shadow);
+						button2.setEffect(null);
 					}
 				});
 
 		button2.addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
 					@Override public void handle(MouseEvent e) {
-						button2.setEffect(null);
+						button2.setEffect(bshadow);
 					}
 				});
 		button3.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
 					@Override public void handle(MouseEvent e) {
-						button3.setEffect(shadow);
+						button3.setEffect(null);
 					}
 				});
 
 		button3.addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
 					@Override public void handle(MouseEvent e) {
-						button3.setEffect(null);
+						button3.setEffect(bshadow);
 					}
 				});
 
