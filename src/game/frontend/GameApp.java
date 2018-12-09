@@ -2,7 +2,6 @@ package game.frontend;
 
 import game.backend.CandyGame;
 import game.backend.Grid;
-import game.backend.cell.Cell;
 import game.backend.level.Level1;
 import game.backend.level.Level2;
 import game.backend.level.Level3;
@@ -10,7 +9,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -18,7 +16,6 @@ import javafx.scene.media.MediaException;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import java.io.File;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -26,6 +23,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameApp extends Application {
+
+	private static final double MENU_CELL = 0.5;
+	private static final double LABEL_CELL = 0.4;
+	private static final int BUTTON_X = 130;
+	private static final int BUTTON_Y = 460;
+	private static final int BUTTON_OFFSET = 80;
 
 	public static void main(String[] args) { launch(args); }
 
@@ -48,8 +51,8 @@ public class GameApp extends Application {
 		for (int i = 0; i < 3; i++) {
 			Button b = new Button();
 			b.setGraphic(new ImageView(String.format("images/lvl%d#y.png", i+1)));
-			b.setLayoutY(460 + i * 80);
-			b.setLayoutX(130);
+			b.setLayoutY(BUTTON_Y + i * BUTTON_OFFSET);
+			b.setLayoutX(BUTTON_X);
 			b.setStyle("-fx-background-color: transparent");
 			b.setEffect(bShadow);
 			b.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> b.setEffect(null));
@@ -58,7 +61,7 @@ public class GameApp extends Application {
 			root.getChildren().add(b);
 		}
 
-		Scene scene = new Scene(root, CandyFrame.CELL_SIZE * Grid.SIZE,CandyFrame.CELL_SIZE * (Grid.SIZE + 0.5 + 0.4)); // 65*11 = 715
+		Scene scene = new Scene(root, CandyFrame.CELL_SIZE * Grid.SIZE,CandyFrame.CELL_SIZE * (Grid.SIZE + MENU_CELL + LABEL_CELL)); // 715 * 773.5
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Candy Crush Saga");
 		stage = primaryStage;
