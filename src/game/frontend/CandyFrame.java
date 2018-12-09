@@ -102,10 +102,10 @@ public class CandyFrame extends VBox {
 				if (game().isFinished()) {
 					if (game().playerWon()) {
 						soundMaker();
-						message = message + " Puntaje obtenido. ¡Ganaste! ";
+						message = message + "Puntaje obtenido. ¡Ganaste! ";
 						Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 						alert.setTitle("Nivel ganado");
-						alert.setHeaderText("¡FELICITACIONES! Ha ganado el Nivel");
+						alert.setHeaderText("¡FELICITACIONES! Ha ganado el nivel");
 						alert.setContentText("¿Desea continuar?");
 						Optional<ButtonType> result = alert.showAndWait();
 						if(result.isPresent()) {
@@ -119,10 +119,10 @@ public class CandyFrame extends VBox {
 							}
 						}
 					} else {
-						message = message + " El Nivel no ha sido superado. ¡Perdiste!";
+						message = message + "El nivel no ha sido superado. ¡Perdiste!";
 						Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 						alert.setTitle("Nivel perdido");
-						alert.setHeaderText("No ha cumplido el objetivo de este Nivel");
+						alert.setHeaderText("No ha cumplido el objetivo de este nivel");
 						alert.setContentText("¿Desea volver a intentarlo?\n Presione Cancelar para salir del juego");
 						Optional<ButtonType> result = alert.showAndWait();
 						if(result.isPresent()) {
