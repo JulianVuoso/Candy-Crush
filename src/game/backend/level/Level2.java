@@ -5,9 +5,10 @@ import game.backend.Grid;
 import game.backend.element.*;
 
 public class Level2 extends Grid {
-    private static int REQUIRED_SCORE = 14000;
-    private static int MAX_MOVES = 25;
-    private static int GAP_ROW = (SIZE-1)/2;
+
+    private static final int REQUIRED_SCORE = 14000;
+    private static final int MAX_MOVES = 25;
+    private static final int GAP_ROW = (SIZE-1)/2;
 
     @Override
     protected GameState newState() {
@@ -34,12 +35,8 @@ public class Level2 extends Grid {
     }
 
     private class Level2State extends GameState {
-        private long requiredScore;
-        private long maxMoves;
-
         public Level2State(long requiredScore, int maxMoves) {
-            this.requiredScore = requiredScore;
-            setMoves(maxMoves);
+            super(requiredScore, maxMoves);
         }
 
         public boolean gameOver() {
@@ -47,7 +44,7 @@ public class Level2 extends Grid {
         }
 
         public boolean playerWon() {
-            return getScore() > requiredScore;
+            return getScore() > getRequiredScore();
         }
     }
 }

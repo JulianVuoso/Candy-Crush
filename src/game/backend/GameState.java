@@ -3,21 +3,31 @@ package game.backend;
 public abstract class GameState {
 	
 	private long score = 0;
+	private long requiredScore = 0;
 	private int moves = 0;
 	protected int extraCount = 0;
 	protected long lastScore = 0;
+
+	protected GameState(long requiredScore, int maxMoves){
+		this.requiredScore = requiredScore;
+		this.moves = maxMoves;
+	}
 
 	public void addScore(long value) {
 		lastScore += value;
 		this.score = this.score + value;
 	}
 	
-	public long getScore(){
+	protected long getScore(){
 		return score;
 	}
 
+	protected long getRequiredScore(){
+		return requiredScore;
+	}
+
 	public String getStatus() {
-		return String.format("Moves: %d\t\t%d", moves, score);
+		return String.format("Moves: %d\t\t%d/%d", moves, score, requiredScore);
 	}
 
 	public long getLastScore() {
@@ -31,8 +41,6 @@ public abstract class GameState {
 	public void setExtraCount(int extraCount){
 		this.extraCount = extraCount;
 	}
-
-	protected void setMoves(int moves){ this.moves = moves; }
 
 	public void addMove() {
 		moves--;
