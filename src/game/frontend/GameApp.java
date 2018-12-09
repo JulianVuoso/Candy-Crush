@@ -6,9 +6,11 @@ import game.backend.level.Level1;
 import game.backend.level.Level2;
 import game.backend.level.Level3;
 import javafx.application.Application;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -64,6 +66,7 @@ public class GameApp extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Candy Crush Saga");
 		stage = primaryStage;
+		scene.setCursor(new ImageCursor(new Image("images/cursor.png"), 100,100));
 		primaryStage.show();
 
 		levels.addAll(Arrays.asList(Level1.class, Level2.class, Level3.class));
@@ -82,6 +85,7 @@ public class GameApp extends Application {
 				lvl = lvlAux + 1;
 			});
 		}
+
 		final String TONE_PATH = "/tones/";
 		String musicFile = "intro.mp3";     // For example
 		Media sound = null;
