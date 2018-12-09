@@ -53,6 +53,12 @@ public class CandyGame implements GameListener {
 	public boolean playerWon() {
 		return state.playerWon();
 	}
+
+	public long getLastScore() {
+		long aux = state.getLastScore();
+		state.resetLastScore();
+		return aux;
+	}
 	
 	@Override
 	public void cellExplosion(Element e) {

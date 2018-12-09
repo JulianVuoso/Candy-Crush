@@ -13,7 +13,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 
@@ -90,6 +94,7 @@ public class CandyFrame extends VBox {
 			if (clickPoint != null) {
 				game().tryMove((int)dragPoint.getX(), (int)dragPoint.getY(), (int)clickPoint.getX(), (int)clickPoint.getY());
 				String message = game().getStatus();
+				soundMaker(game().getLastScore());
 				if (game().isFinished()) {
 					if (game().playerWon()) {
 						message = message + " Puntaje obtenido. ¡Ganaste! ";
@@ -141,5 +146,28 @@ public class CandyFrame extends VBox {
 		double i = x / CELL_SIZE;
 		double j = y / CELL_SIZE - 0.5;
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize() && !game.get((int)j, (int)i).getContent().isHole()) ? new Point2D(j, i) : null;
+	}
+
+	private void soundMaker(long score) {
+		final String TONE_PATH = "/tones/";
+		String musicFile;
+		if (score < 500) {
+			return;
+		} else if (score < 850) {
+			musicFile = "tasty.mp3";
+		} else if (score < 1200) {
+			musicFile = "delicious.mp3";
+		} else {
+			musicFile = "divine.mp3";
+		}
+
+		Media sound = null;
+		try {
+			sound = new Media(getClass().getResource(TONE_PATH + musicFile).toURI().toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
 	}
 }

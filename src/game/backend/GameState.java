@@ -5,8 +5,10 @@ public abstract class GameState {
 	private long score = 0;
 	private int moves = 0;
 	protected int extraCount = 0;
+	protected long lastScore = 0;
 
 	public void addScore(long value) {
+		lastScore += value;
 		this.score = this.score + value;
 	}
 	
@@ -14,8 +16,16 @@ public abstract class GameState {
 		return score;
 	}
 
-	public String getStatus(){
+	public String getStatus() {
 		return String.format("Moves: %d\t\t%d", moves, score);
+	}
+
+	public long getLastScore() {
+		return lastScore;
+	}
+
+	public void resetLastScore() {
+		lastScore = 0;
 	}
 
 	public void setExtraCount(int extraCount){

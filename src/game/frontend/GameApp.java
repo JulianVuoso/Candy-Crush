@@ -14,7 +14,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -74,6 +78,17 @@ public class GameApp extends Application {
 				lvl = lvlAux + 1;
 			});
 		}
+//		final String TONE_PATH = "/tones/";
+//		String musicFile = "intro.mp3";     // For example
+//		Media sound = null;
+//		try {
+//			sound = new Media(getClass().getResource(TONE_PATH + musicFile).toURI().toString());
+//		} catch (URISyntaxException e) {
+//			e.printStackTrace();
+//		}
+//		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+//		mediaPlayer.setAutoPlay(true);
+//		mediaPlayer.play();
 	}
 
 	public static int lvl;
