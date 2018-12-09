@@ -97,12 +97,11 @@ public class CandyFrame extends VBox {
 
 			if (clickPoint != null) {
 				game().tryMove((int)dragPoint.getX(), (int)dragPoint.getY(), (int)clickPoint.getX(), (int)clickPoint.getY());
-				String message = game().getStatus();
+				scorePanel.updateScore(game().getStatus());
 				soundMaker(game().getLastScore());
 				if (game().isFinished()) {
 					if (game().playerWon()) {
 						soundMaker();
-						message = message + "Puntaje obtenido. ¡Ganaste! ";
 						Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 						alert.setTitle("Nivel ganado");
 						alert.setHeaderText("¡FELICITACIONES! Ha ganado el nivel");
@@ -119,7 +118,6 @@ public class CandyFrame extends VBox {
 							}
 						}
 					} else {
-						message = message + "El nivel no ha sido superado. ¡Perdiste!";
 						Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 						alert.setTitle("Nivel perdido");
 						alert.setHeaderText("No ha cumplido el objetivo de este nivel");
@@ -135,7 +133,6 @@ public class CandyFrame extends VBox {
 						}
 					}
 				}
-				scorePanel.updateScore(message);
 			}
 			clickPoint = null;
 			dragPoint = null;
