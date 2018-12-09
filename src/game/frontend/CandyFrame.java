@@ -173,7 +173,7 @@ public class CandyFrame extends VBox {
 			mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
 		} catch (MediaException e){
-			System.out.println(e.getMessage());
+			System.out.println(musicFile);
 		}
 	}
 
@@ -186,12 +186,11 @@ public class CandyFrame extends VBox {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		mediaPlayer.stop();
 		try {
 			mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.play();
 		} catch (MediaException e){
-			System.out.println(e.getMessage());
+			System.out.println(musicFile);
 		}
 	}
 

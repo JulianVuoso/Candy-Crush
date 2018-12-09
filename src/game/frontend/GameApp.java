@@ -101,7 +101,7 @@ public class GameApp extends Application {
 			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 			mediaPlayer.play();
 		} catch (MediaException e) {
-			System.out.println(e.getMessage());
+			System.out.println(musicFile);
 		}
 	}
 
