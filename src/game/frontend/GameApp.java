@@ -91,6 +91,7 @@ public class GameApp extends Application {
 		mediaPlayer = new MediaPlayer(sound);
 
 		mediaPlayer.setAutoPlay(true);
+		mediaPlayer.setVolume(0.4);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		mediaPlayer.play();
 	}
