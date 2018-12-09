@@ -99,6 +99,7 @@ public class CandyFrame extends VBox {
 				soundMaker(game().getLastScore());
 				if (game().isFinished()) {
 					if (game().playerWon()) {
+						soundMaker();
 						message = message + " Puntaje obtenido. ¡Ganaste! ";
 						Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 						alert.setTitle("Nivel ganado");
@@ -172,6 +173,20 @@ public class CandyFrame extends VBox {
 		mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 
+	}
+
+	private void soundMaker() {
+		final String TONE_PATH = "/tones/";
+		String musicFile = "celebration.mp3";
+		Media sound = null;
+		try {
+			sound = new Media(getClass().getResource(TONE_PATH + musicFile).toURI().toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		mediaPlayer.stop();
+		mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
 	}
 
 	public void setMediaPlayer(MediaPlayer mp) {
