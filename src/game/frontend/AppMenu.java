@@ -25,47 +25,26 @@ public class AppMenu extends MenuBar {
             }
         });
 
-        MenuItem level1item = new MenuItem("Nivel 1");
         Stage stage = GameApp.getStage();
-        level1item.setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Nivel 1");
-            alert.setHeaderText("Nueva partida: Nivel 1");
-            alert.setContentText("¿Está seguro que desea abandonar su partida?\nComenzara una nueva en el Nivel 1.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if(result.isPresent()) {
-                if (result.get() == ButtonType.OK) {
-                    GameApp.level(stage, 1);
+        for(int i=1; i<4; i++){
+            String leveltitle = String.format("Nivel %d", i);
+            MenuItem levelItem = new MenuItem(leveltitle);
+            int level = i;
+            levelItem.setOnAction(event -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle(leveltitle);
+                alert.setHeaderText( new String().format("Nueva partida: Nivel %d", level));
+                alert.setContentText( new String().format("¿Está seguro que desea abandonar su partida?\nComenzara una nueva en el Nivel %d.", level));
+                Optional<ButtonType> result = alert.showAndWait();
+                if(result.isPresent()) {
+                    if (result.get() == ButtonType.OK) {
+                        GameApp.level(stage, level);
+                    }
                 }
-            }
-        });
-        MenuItem level2Item = new MenuItem("Nivel 2");
-        level2Item.setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Nivel 2");
-            alert.setHeaderText("Nueva partida: Nivel 2");
-            alert.setContentText("¿Está seguro que desea abandonar su partida?\nComenzara una nueva en el Nivel 2.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if(result.isPresent()) {
-                if (result.get() == ButtonType.OK) {
-                    GameApp.level(stage, 2);
-                }
-            }
-        });
-        MenuItem level3Item = new MenuItem("Nivel 3");
-        level3Item.setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Nivel 3");
-            alert.setHeaderText("Nueva partida: Nivel 3");
-            alert.setContentText("¿Está seguro que desea abandonar su partida?\nComenzara una nueva en el Nivel 3.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if(result.isPresent()) {
-                if (result.get() == ButtonType.OK) {
-                    GameApp.level(stage, 3);
-                }
-            }
-        });
-        file.getItems().addAll(level1item,level2Item,level3Item,exitMenuItem);
+            });
+            file.getItems().add(levelItem);
+        }
+        file.getItems().add(exitMenuItem);
 
         Menu help = new Menu("Ayuda");
         MenuItem aboutMenuItem = new MenuItem("Acerca De");
