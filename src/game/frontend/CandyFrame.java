@@ -26,6 +26,8 @@ public class CandyFrame extends VBox {
 	static final int CELL_SIZE = 65;
 	private static final int FRAME_GAP = 100;
 
+	private static MediaPlayer mediaPlayer;
+
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
 	private ImageManager images;
@@ -167,7 +169,7 @@ public class CandyFrame extends VBox {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 	}
 }
