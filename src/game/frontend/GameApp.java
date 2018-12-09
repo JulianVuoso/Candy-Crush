@@ -26,10 +26,11 @@ import java.util.List;
 
 public class GameApp extends Application {
 
-	private static final double LABEL_CELL = 0.4;
+	private static final double LABEL_CELL = 0.4; // Relacion entre tamaño de label y tamaño de cell
 	private static final int BUTTON_X = 130;
 	private static final int BUTTON_Y = 460;
 	private static final int BUTTON_OFFSET = 80;
+	static final int LEVELS = 3;
 
 	public static void main(String[] args) { launch(args); }
 
@@ -49,7 +50,7 @@ public class GameApp extends Application {
 		DropShadow bShadow = new DropShadow();
         List<Class> levels = new ArrayList<>();
 		List<Button> bList = new ArrayList<>();
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < LEVELS; i++) {
 			Button b = new Button();
 			b.setGraphic(new ImageView(String.format("images/lvl%d#y.png", i+1)));
 			b.setLayoutY(BUTTON_Y + i * BUTTON_OFFSET);

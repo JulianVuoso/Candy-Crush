@@ -34,8 +34,8 @@ public class AppMenu extends MenuBar {
             levelItem.setOnAction(event -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle(levelTitle);
-                alert.setHeaderText( new String().format("Nueva partida: Nivel %d", level));
-                alert.setContentText( new String().format("¿Está seguro que desea abandonar su partida?\nComenzara una nueva en el Nivel %d.", level));
+                alert.setHeaderText(String.format("Nueva partida: Nivel %d", level));
+                alert.setContentText(String.format("¿Está seguro que desea abandonar su partida?\nComenzara una nueva en el Nivel %d.", level));
                 Optional<ButtonType> result = alert.showAndWait();
                 if(result.isPresent()) {
                     if (result.get() == ButtonType.OK) {

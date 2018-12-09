@@ -25,7 +25,7 @@ import java.util.Optional;
 public class CandyFrame extends VBox {
 
 	static final int CELL_SIZE = 65;
-	static final double MENU_CELL = 0.5;
+	static final double MENU_CELL = 0.5; // Relacion entre tamaño de menu y tamaño de cell
 	private static final int FRAME_GAP = 100;
 
 	private static MediaPlayer mediaPlayer;
@@ -109,7 +109,7 @@ public class CandyFrame extends VBox {
 						Optional<ButtonType> result = alert.showAndWait();
 						if(result.isPresent()) {
 							if (result.get() == ButtonType.OK) {
-								if (GameApp.lvl < 3){
+								if (GameApp.lvl < GameApp.LEVELS){
 									GameApp.level(GameApp.getStage(), GameApp.lvl+1);
 								} else Platform.exit();
 							}
