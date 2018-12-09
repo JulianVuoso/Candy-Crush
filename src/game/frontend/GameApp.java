@@ -1,6 +1,7 @@
 package game.frontend;
 
 import game.backend.CandyGame;
+import game.backend.Grid;
 import game.backend.cell.Cell;
 import game.backend.level.Level1;
 import game.backend.level.Level2;
@@ -56,7 +57,7 @@ public class GameApp extends Application {
 			root.getChildren().add(b);
 		}
 
-		Scene scene = new Scene(root, CandyFrame.CELL_SIZE * 11,CandyFrame.CELL_SIZE * (11 + 0.5 + 0.4)); // 65*11 = 715
+		Scene scene = new Scene(root, CandyFrame.CELL_SIZE * Grid.SIZE,CandyFrame.CELL_SIZE * (Grid.SIZE + 0.5 + 0.4)); // 65*11 = 715
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Candy Crush Saga");
 		stage = primaryStage;
