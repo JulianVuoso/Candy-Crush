@@ -22,13 +22,13 @@ public abstract class GameState {
 		this.extraCount = extraCount;
 	}
 
-	public void setMoves(int moves){ this.moves = moves; }
+	protected void setMoves(int moves){ this.moves = moves; }
 
 	public void addMove() {
 		moves--;
 	}
 	
-	public int getMoves() {
+	protected int getMoves() {
 		return moves;
 	}
 	

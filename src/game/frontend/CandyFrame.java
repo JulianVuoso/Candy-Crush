@@ -20,6 +20,7 @@ import java.util.Optional;
 public class CandyFrame extends VBox {
 
 	static final int CELL_SIZE = 65;
+	private static final int FRAME_GAP = 100;
 
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
@@ -44,7 +45,7 @@ public class CandyFrame extends VBox {
 			@Override
 			public void gridUpdated() {
 				Timeline timeLine = new Timeline();
-				Duration frameGap = Duration.millis(100);
+				Duration frameGap = Duration.millis(FRAME_GAP);
 				Duration frameTime = Duration.ZERO;
 				for (int i = game().getSize() - 1; i >= 0; i--) {
 					for (int j = game().getSize() - 1; j >= 0; j--) {
@@ -79,7 +80,7 @@ public class CandyFrame extends VBox {
 				alert.setTitle("¡ERROR!");
 				alert.setHeaderText("MOVIMIENTO EQUIVOCADO.");
 				alert.setContentText("Para realizar un movimiento, \ndebe arrastrar de un punto a otro. ");
-				Optional<ButtonType> result = alert.showAndWait();
+				alert.showAndWait();
 				return;
 			}
 

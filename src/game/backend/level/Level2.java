@@ -5,8 +5,8 @@ import game.backend.Grid;
 import game.backend.element.*;
 
 public class Level2 extends Grid {
-    private static int REQUIRED_SCORE = 50000;
-    private static int MAX_MOVES = 20;
+    private static int REQUIRED_SCORE = 14000;
+    private static int MAX_MOVES = 25;
     private static int GAP_ROW = (SIZE-1)/2;
 
     @Override
