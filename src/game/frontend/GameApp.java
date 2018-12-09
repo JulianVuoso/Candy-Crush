@@ -24,7 +24,6 @@ import java.util.List;
 
 public class GameApp extends Application {
 
-	private static final double MENU_CELL = 0.5;
 	private static final double LABEL_CELL = 0.4;
 	private static final int BUTTON_X = 130;
 	private static final int BUTTON_Y = 460;
@@ -61,7 +60,7 @@ public class GameApp extends Application {
 			root.getChildren().add(b);
 		}
 
-		Scene scene = new Scene(root, CandyFrame.CELL_SIZE * Grid.SIZE,CandyFrame.CELL_SIZE * (Grid.SIZE + MENU_CELL + LABEL_CELL)); // 715 * 773.5
+		Scene scene = new Scene(root, CandyFrame.CELL_SIZE * Grid.SIZE,CandyFrame.CELL_SIZE * (Grid.SIZE + CandyFrame.MENU_CELL + LABEL_CELL)); // 715 * 773.5
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Candy Crush Saga");
 		stage = primaryStage;

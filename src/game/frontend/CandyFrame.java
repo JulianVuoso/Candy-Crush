@@ -25,6 +25,7 @@ import java.util.Optional;
 public class CandyFrame extends VBox {
 
 	static final int CELL_SIZE = 65;
+	static final double MENU_CELL = 0.5;
 	private static final int FRAME_GAP = 100;
 
 	private static MediaPlayer mediaPlayer;
@@ -148,7 +149,7 @@ public class CandyFrame extends VBox {
 
 	private Point2D translateCoords(double x, double y) {
 		double i = x / CELL_SIZE;
-		double j = y / CELL_SIZE - 0.5;
+		double j = y / CELL_SIZE - MENU_CELL;
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize() && !game.get((int)j, (int)i).getContent().isHole()) ? new Point2D(j, i) : null;
 	}
 
