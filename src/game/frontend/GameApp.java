@@ -33,14 +33,12 @@ public class GameApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		final Image homeScreen = new Image( "images/burblebackground.png" );
-		final ImageView flashScreen_node = new ImageView();
-		flashScreen_node.setImage(homeScreen);
-		primaryStage.getIcons().add(homeScreen);
+		final ImageView background = new ImageView("images/burblebackground.png");
+		primaryStage.getIcons().add(background.getImage());
 		Pane root = new Pane();
-		root.getChildren().addAll(flashScreen_node);
-        DropShadow bShadow = new DropShadow();
+		root.getChildren().add(background);
 
+		DropShadow bShadow = new DropShadow();
         List<Class> levels = new ArrayList<>();
 		List<Button> bList = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
@@ -96,12 +94,11 @@ public class GameApp extends Application {
 	public static void level (Stage primaryStage, int level_in){
 		lvl = level_in;
 		CandyGame game = new CandyGame();
-		switch (lvl){
-			case 1: game.setLevelClass(Level1.class); break;
-			case 2: game.setLevelClass(Level2.class); break;
-			case 3: game.setLevelClass(Level3.class); break;
-			default: break;
-		}
+
+		List<Class> levels = new ArrayList<>();
+		levels.addAll(Arrays.asList(Level1.class, Level2.class, Level3.class));
+		game.setLevelClass(levels.get(lvl-1));
+
 		CandyFrame frame = new CandyFrame(game);
 		Scene scene2 = new Scene(frame);
 		primaryStage.setResizable(false);
