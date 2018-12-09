@@ -1,9 +1,8 @@
 package game.backend.cell;
 
 import game.backend.Grid;
-import game.backend.element.Element;
-import game.backend.element.Jelly;
-import game.backend.element.Nothing;
+import game.backend.element.*;
+import game.backend.move.BombMove;
 import game.backend.move.Direction;
 
 public class Cell {
@@ -82,11 +81,22 @@ public class Cell {
 	}
 	
 	private void explode(Direction d) {
+		// Si una bomba es explotada en una explosion, debe explotar caramelos de un color
+		// Como el vector de explosion es null, sino no hace reaccion en cadena
+		if (content instanceof Bomb) {
+			clearBomb();
+		}
 		clearContent();
 		if (this.around[d.ordinal()] != null)
 			this.around[d.ordinal()].explode(d);
 	}
-	
+
+	private void clearBomb(){
+		CandyColor[] vector = CandyColor.values();
+		Candy candy = new Candy(vector[(int)(Math.random() * 6)]);
+		new BombMove(grid).clearGrid(candy);
+	}
+
 	public Element getAndClearContent() {
 		if (content.isMovable()) {
 			Element ret = content;

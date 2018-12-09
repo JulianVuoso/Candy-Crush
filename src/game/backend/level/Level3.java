@@ -35,6 +35,13 @@ public class Level3 extends Grid {
 //        g()[1][0].setContent(new Candy(CandyColor.GREEN));
 //        g()[0][1].setContent(new Candy(CandyColor.GREEN));
 
+//        g()[SIZE-1][0].setContent(new Bomb());
+//        Candy aux = new VerticalStripedCandy();
+//        aux.setColor(CandyColor.BLUE);
+//        g()[SIZE-2][0].setContent(aux);
+//        g()[SIZE-2][1].setContent(new Candy(CandyColor.BLUE));
+//        g()[SIZE-3][1].setContent(new Candy(CandyColor.BLUE));
+
         state().setExtraCount(72);
         super.fillCells();
     }
