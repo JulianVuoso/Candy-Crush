@@ -62,15 +62,16 @@ public class GameApp extends Application {
 
 		for (int i = 0; i < bList.size(); i++) {
 			String title = String.format("Candy Crush Saga - Level %d", i+1);
-			int lvlAux = i+1;
-			CandyGame game = new CandyGame(levels.get(i));
-			CandyFrame frame = new CandyFrame(game);
-			Scene scene2 = new Scene(frame);
+			int lvlAux = i;
+
 			bList.get(i).setOnAction(e->{
+				CandyGame game = new CandyGame(levels.get(lvlAux));
+				CandyFrame frame = new CandyFrame(game);
+				Scene scene2 = new Scene(frame);
 				primaryStage.setTitle(title);
 				primaryStage.setResizable(false);
 				primaryStage.setScene(scene2);
-				lvl = lvlAux;
+				lvl = lvlAux + 1;
 			});
 		}
 	}
