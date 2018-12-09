@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
@@ -170,9 +171,12 @@ public class CandyFrame extends VBox {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
-
+		try {
+			mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+		} catch (MediaException e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private void soundMaker() {
@@ -185,8 +189,12 @@ public class CandyFrame extends VBox {
 			e.printStackTrace();
 		}
 		mediaPlayer.stop();
-		mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
+		try {
+			mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+		} catch (MediaException e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void setMediaPlayer(MediaPlayer mp) {

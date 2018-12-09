@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaException;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -88,12 +89,15 @@ public class GameApp extends Application {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		mediaPlayer = new MediaPlayer(sound);
-
-		mediaPlayer.setAutoPlay(true);
-		mediaPlayer.setVolume(0.4);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.play();
+		try {
+			mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.setAutoPlay(true);
+			mediaPlayer.setVolume(0.4);
+			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+			mediaPlayer.play();
+		} catch (MediaException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public static int lvl;
