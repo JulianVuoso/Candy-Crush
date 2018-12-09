@@ -71,7 +71,6 @@ public class GameApp extends Application {
 		for (int i = 0; i < bList.size(); i++) {
 			String title = String.format("Candy Crush Saga - Level %d", i+1);
 			int lvlAux = i;
-
 			bList.get(i).setOnAction(e->{
 				CandyGame game = new CandyGame(levels.get(lvlAux));
 				CandyFrame frame = new CandyFrame(game);

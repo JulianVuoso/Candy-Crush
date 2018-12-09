@@ -11,6 +11,7 @@ public class AppMenu extends MenuBar {
     public AppMenu() {
 
         Menu file = new Menu("Juego");
+
         MenuItem exitMenuItem = new MenuItem("Salir");
         exitMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -27,12 +28,12 @@ public class AppMenu extends MenuBar {
 
         Stage stage = GameApp.getStage();
         for(int i=1; i<4; i++){
-            String leveltitle = String.format("Nivel %d", i);
-            MenuItem levelItem = new MenuItem(leveltitle);
+            String levelTitle = String.format("Nivel %d", i);
+            MenuItem levelItem = new MenuItem(levelTitle);
             int level = i;
             levelItem.setOnAction(event -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle(leveltitle);
+                alert.setTitle(levelTitle);
                 alert.setHeaderText( new String().format("Nueva partida: Nivel %d", level));
                 alert.setContentText( new String().format("¿Está seguro que desea abandonar su partida?\nComenzara una nueva en el Nivel %d.", level));
                 Optional<ButtonType> result = alert.showAndWait();
