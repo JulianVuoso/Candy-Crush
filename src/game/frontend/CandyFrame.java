@@ -171,5 +171,10 @@ public class CandyFrame extends VBox {
 		}
 		mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
+
+	}
+
+	public void setMediaPlayer(MediaPlayer mp) {
+		mediaPlayer = mp;
 	}
 }

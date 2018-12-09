@@ -28,6 +28,8 @@ public class GameApp extends Application {
 	public static void main(String[] args) { launch(args); }
 
 	public static Stage stage = new Stage();
+	private static MediaPlayer mediaPlayer;
+
 	public static Stage getStage(){ return stage; }
 
 	@Override
@@ -69,6 +71,7 @@ public class GameApp extends Application {
 			bList.get(i).setOnAction(e->{
 				CandyGame game = new CandyGame(levels.get(lvlAux));
 				CandyFrame frame = new CandyFrame(game);
+				frame.setMediaPlayer(mediaPlayer);
 				Scene scene2 = new Scene(frame);
 				primaryStage.setTitle(title);
 				primaryStage.setResizable(false);
@@ -76,17 +79,19 @@ public class GameApp extends Application {
 				lvl = lvlAux + 1;
 			});
 		}
-//		final String TONE_PATH = "/tones/";
-//		String musicFile = "intro.mp3";     // For example
-//		Media sound = null;
-//		try {
-//			sound = new Media(getClass().getResource(TONE_PATH + musicFile).toURI().toString());
-//		} catch (URISyntaxException e) {
-//			e.printStackTrace();
-//		}
-//		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-//		mediaPlayer.setAutoPlay(true);
-//		mediaPlayer.play();
+		final String TONE_PATH = "/tones/";
+		String musicFile = "intro.mp3";     // For example
+		Media sound = null;
+		try {
+			sound = new Media(getClass().getResource(TONE_PATH + musicFile).toURI().toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		mediaPlayer = new MediaPlayer(sound);
+
+		mediaPlayer.setAutoPlay(true);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.play();
 	}
 
 	public static int lvl;
