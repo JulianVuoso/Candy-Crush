@@ -3,6 +3,9 @@ package game.backend.move;
 import game.backend.Figure;
 import game.backend.FigureDetector;
 import game.backend.Grid;
+import game.backend.element.Candy;
+import game.backend.element.CandyColor;
+import game.backend.element.Nothing;
 
 public class CandyMove extends Move {
 
@@ -27,11 +30,12 @@ public class CandyMove extends Move {
 
 	@Override
 	public void removeElements() {
+		CandyColor color2 = ((Candy)grid.get(i2, j2)).getColor();
 		if (f1 != null) {
 			detector.removeFigure(i1, j1, f1);
 		}
 		if (f2 != null) {
-			detector.removeFigure(i2, j2, f2);
+			detector.removeFigure(i2, j2, f2, color2);
 		}
 	}
 
