@@ -8,6 +8,7 @@ public class Level3 extends Grid {
 
     private static final int REQUIRED_SCORE = 10000;
     private static final int MAX_MOVES = 35;
+    private static final int JELLY_COUNT = 72;
 
     @Override
     protected GameState newState() {
@@ -42,7 +43,7 @@ public class Level3 extends Grid {
 //        g()[SIZE-2][1].setContent(new Candy(CandyColor.BLUE));
 //        g()[SIZE-3][1].setContent(new Candy(CandyColor.BLUE));
 
-        state().setExtraCount(72);
+        state().setExtraCount(JELLY_COUNT);
         super.fillCells();
     }
 
