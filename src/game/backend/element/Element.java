@@ -24,5 +24,10 @@ public abstract class Element {
 		return 0;
 	}
 
+	/*
+	* Se agrega el metodo concreto isHole(), que devuelve false.
+	* Este metodo sera sobreescrito por Gap para indicar que es
+	* un agujero
+	* */
 	public boolean isHole() { return false; }
 }

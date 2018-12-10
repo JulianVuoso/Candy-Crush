@@ -7,7 +7,8 @@ public class TwoWrappedMove extends Move {
 	public TwoWrappedMove(Grid grid) {
 		super(grid);
 	}
-	
+
+	/* Se simplifico este metodo unificando las condiciones */
 	@Override
 	public void removeElements() {
 		int currI = i1, currJ = j1;
@@ -22,6 +23,8 @@ public class TwoWrappedMove extends Move {
 		}
 	}
 
+	/* Se agrego este metodo para simplificar el codigo
+	*  original y evitar la repetición */
 	private void swipeGrid (int currI, int currJ, int maxI, int maxJ){
 		for (int i = Integer.max(currI - 1, 0); i <= Integer.min(currI + maxI, Grid.SIZE - 1); i++) {
 			for (int j = Integer.max(currJ - 1, 0); j <= Integer.min(currJ + maxJ, Grid.SIZE - 1); j++) {
