@@ -119,14 +119,14 @@ public class CandyFrame extends VBox {
 
 	private void soundMaker(long score) {
 
-		if (score < TASTY_MIN_POINTS) {
-			return;
-		} else if (score < DELICIOUS_MIN_POINTS) {
-			tones.playTone("tasty");
-		} else if (score < DIVINE_MIN_POINTS) {
-			tones.playTone("delicious");
-		} else {
-			tones.playTone("divine");
+		if (score >= TASTY_MIN_POINTS) {
+			if (score < DELICIOUS_MIN_POINTS) {
+				tones.playTone("tasty");
+			} else if (score < DIVINE_MIN_POINTS) {
+				tones.playTone("delicious");
+			} else {
+				tones.playTone("divine");
+			}
 		}
 	}
 
