@@ -1,6 +1,7 @@
 package game.backend.element;
 
-public class Jelly extends Element{
+public class Jelly extends Element {
+
     @Override
     public boolean isMovable() {
         return false;

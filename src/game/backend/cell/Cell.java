@@ -62,7 +62,7 @@ public class Cell {
 		if (content.isMovable()) {
 			Direction[] explosionCascade = content.explode();
 			grid.cellExplosion(content);
-			if (hasExtra() && grid.isStarted()){
+			if (hasExtra() && grid.isStarted()) {
 				breakExtra();
                 grid.removeExtra();
 			}
@@ -87,14 +87,15 @@ public class Cell {
 			clearBomb();
 		}
 		clearContent();
-		if (this.around[d.ordinal()] != null)
+		if (this.around[d.ordinal()] != null) {
 			this.around[d.ordinal()].explode(d);
+		}
 	}
 
-	private void clearBomb(){
+	private void clearBomb() {
 		CandyColor[] vector = CandyColor.values();
 		Candy candy = new Candy(vector[(int)(Math.random() * 6)]);
-		new BombMove(grid).clearGrid(candy);
+		new BombMove(grid).clearEquals(candy);
 	}
 
 	public Element getAndClearContent() {
@@ -107,13 +108,13 @@ public class Cell {
 	}
 
 	public boolean fallUpperContent() {
-
 		if (!this.isEmpty()) {
 			return false;
 		}
-
 		Cell up = around[Direction.UP.ordinal()];
-		if (up.isHole()) up = up.around[Direction.UP.ordinal()];
+		if (up.isHole()) {
+			up = up.around[Direction.UP.ordinal()];
+		}
 
 		if (!up.isEmpty() && up.isMovable()) {
 			this.content = up.getAndClearContent();

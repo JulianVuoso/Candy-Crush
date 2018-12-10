@@ -17,21 +17,9 @@ public class BombStrippedMove extends Move {
 	public void removeElements() {
 		Candy candy = (Candy) (get(i1, j1) instanceof Bomb ? get(i2, j2) : get(i1, j1));
 		CandyColor color = candy.getColor();
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				if (candy.equals(get(i, j))) {
-					setContent(i, j, createStriped(color));
-				}
-			}
-		}
+		setEquals(candy, createStriped(color));
 		wasUpdated();
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				if (candy.equals(get(i, j))) {
-					clearContent(i, j);
-				}
-			}
-		}
+		clearEquals(candy);
 	}
 	
 	private Candy createStriped(CandyColor color) {

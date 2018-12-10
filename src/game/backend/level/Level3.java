@@ -26,23 +26,6 @@ public class Level3 extends Grid {
         }
         g()[(SIZE-1)/2][0].setExtra(new Jelly());
         g()[(SIZE-1)/2][SIZE-1].setExtra(new Jelly());
-
-//        Candy aux = new HorizontalStripedCandy();
-//        aux.setColor(CandyColor.BLUE);
-//        g()[1][1].setContent(aux);
-//        g()[0][0].setContent(new Candy(CandyColor.BLUE));
-//        g()[2][0].setContent(new Candy(CandyColor.BLUE));
-//        g()[2][1].setContent(new Candy(CandyColor.GREEN));
-//        g()[1][0].setContent(new Candy(CandyColor.GREEN));
-//        g()[0][1].setContent(new Candy(CandyColor.GREEN));
-
-//        g()[SIZE-1][0].setContent(new Bomb());
-//        Candy aux = new VerticalStripedCandy();
-//        aux.setColor(CandyColor.BLUE);
-//        g()[SIZE-2][0].setContent(aux);
-//        g()[SIZE-2][1].setContent(new Candy(CandyColor.BLUE));
-//        g()[SIZE-3][1].setContent(new Candy(CandyColor.BLUE));
-
         state().setExtraCount(JELLY_COUNT);
         super.fillCells();
     }

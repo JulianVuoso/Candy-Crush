@@ -5,7 +5,6 @@ import game.backend.FigureDetector;
 import game.backend.Grid;
 import game.backend.element.Candy;
 import game.backend.element.CandyColor;
-import game.backend.element.Nothing;
 
 public class CandyMove extends Move {
 

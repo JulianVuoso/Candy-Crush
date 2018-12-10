@@ -1,6 +1,7 @@
 package game.backend.move;
 
 import game.backend.Grid;
+import game.backend.element.Candy;
 import game.backend.element.Element;
 
 public abstract class Move {
@@ -45,7 +46,27 @@ public abstract class Move {
 	protected void wasUpdated(){
 		grid.wasUpdated();
 	}
-	
+
+	protected void setEquals(Candy candyToMatch, Candy candyToSet ){
+		for(int i = 0; i < Grid.SIZE; i++) {
+			for(int j = 0; j < Grid.SIZE; j++) {
+				if (candyToMatch.equals(get(i, j))) {
+					setContent(i, j, candyToSet);
+				}
+			}
+		}
+	}
+
+    public void clearEquals(Candy candy){
+        for(int i = 0; i < Grid.SIZE; i++) {
+            for(int j = 0; j < Grid.SIZE; j++) {
+                if (candy.equals(get(i, j))) {
+                    clearContent(i, j);
+                }
+            }
+        }
+    }
+
 	public abstract void removeElements();
 
 }

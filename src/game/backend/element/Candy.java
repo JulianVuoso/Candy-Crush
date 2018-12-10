@@ -5,6 +5,7 @@ public class Candy extends Element {
 	private CandyColor color;
 	
 	public Candy() {
+		//
 	}
 	
 	public Candy(CandyColor color) {

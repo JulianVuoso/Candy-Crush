@@ -15,16 +15,7 @@ public class BombMove extends Move {
 		Candy candy = (Candy) (get(i1, j1) instanceof Bomb ? get(i2, j2) : get(i1, j1));
 		clearContent(i1, j1);
 		clearContent(i2, j2);
-		clearGrid(candy);
+		clearEquals(candy);
 	}
 
-	public void clearGrid(Candy candy){
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				if (candy.equals(get(i, j))) {
-					clearContent(i, j);
-				}
-			}
-		}
-	}
 }

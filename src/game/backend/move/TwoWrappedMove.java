@@ -10,11 +10,8 @@ public class TwoWrappedMove extends Move {
 	
 	@Override
 	public void removeElements() {
-		int currI, currJ;
-		if (j1 < j2 || i1 < i2){
-			currI = i1;
-			currJ = j1;
-		} else {
+		int currI = i1, currJ = j1;
+		if (!(j1 < j2 || i1 < i2)) {
 			currI = i2;
 			currJ = j2;
 		}

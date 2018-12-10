@@ -18,21 +18,9 @@ public class BombWrappedMove extends Move {
 		CandyColor color = candy.getColor();
 		clearContent(i1, j1);
 		clearContent(i2, j2);
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				if (candy.equals(get(i, j))) {
-					setContent(i, j, createWrapped(color));
-				}
-			}
-		}
+		setEquals(candy, createWrapped(color));
 		wasUpdated();
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				if (candy.equals(get(i, j))) {
-					clearContent(i, j);
-				}
-			}
-		}
+		clearEquals(candy);
 	}
 
 	private Candy createWrapped(CandyColor color) {
