@@ -36,6 +36,8 @@ public class Cell {
 		extra = null;
 	}
 
+	public Element getExtra() { return extra; }
+
 	public boolean hasFloor() {
 		return !around[Direction.DOWN.ordinal()].isEmpty();
 	}
@@ -56,12 +58,11 @@ public class Cell {
 		return content;
 	}
 
-	public Element getExtra() { return extra; }
-
 	public void clearContent() {
 		if (content.isMovable()) {
 			Direction[] explosionCascade = content.explode();
 			grid.cellExplosion(content);
+			// Se remueve el extra si corresponde
 			if (hasExtra() && grid.isStarted()) {
 				breakExtra();
                 grid.removeExtra();
@@ -94,7 +95,7 @@ public class Cell {
 
 	private void clearBomb() {
 		CandyColor[] vector = CandyColor.values();
-		Candy candy = new Candy(vector[(int)(Math.random() * 6)]);
+		Candy candy = new Candy(vector[(int)(Math.random() * CandyColor.values().length)]);
 		new BombMove(grid).clearEquals(candy);
 	}
 
@@ -111,8 +112,9 @@ public class Cell {
 		if (!this.isEmpty()) {
 			return false;
 		}
+		// Se busca la primera celda que no sea un agujero
 		Cell up = around[Direction.UP.ordinal()];
-		if (up.isHole()) {
+		while (up.isHole()) {
 			up = up.around[Direction.UP.ordinal()];
 		}
 
