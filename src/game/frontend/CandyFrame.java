@@ -26,13 +26,15 @@ public class CandyFrame extends VBox {
 	private static final long DELICIOUS_MIN_POINTS = 850;
 	private static final long DIVINE_MIN_POINTS = 1200;
 
-	private static TonesManager tones;
+	private TonesManager tones;
+	private ImageManager images;
+
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
-	private ImageManager images;
+	private CandyGame game;
+
 	private Point2D dragPoint = null;
 	private Point2D clickPoint = null;
-	private CandyGame game;
 
 	public CandyFrame(CandyGame game) {
 		this.game = game;

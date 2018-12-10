@@ -30,7 +30,7 @@ public class GameApp extends Application {
 
 	private Pane root = new Pane();
 	public static Stage stage = new Stage();
-	private static TonesManager tones = new TonesManager();
+	private TonesManager tones = new TonesManager();
 	private  Stage primaryStage;
 	public static int lvl;
 
@@ -43,16 +43,14 @@ public class GameApp extends Application {
 		this.primaryStage = primaryStage;
 
 		setScene();
-		List<Class> levels = new ArrayList<>();
-		levels.addAll(Arrays.asList(Level1.class, Level2.class, Level3.class));
+		List<Class> levels = new ArrayList<>(Arrays.asList(Level1.class, Level2.class, Level3.class));
 		setButtons(levels);
-		tones.playTone("intro", 04, MediaPlayer.INDEFINITE);
+		tones.playTone("intro", 0.4, MediaPlayer.INDEFINITE);
 	}
 
 	public static void level (Stage primaryStage, int level_in){
 		CandyGame game = new CandyGame();
-		List<Class> levels = new ArrayList<>();
-		levels.addAll(Arrays.asList(Level1.class, Level2.class, Level3.class));
+		List<Class> levels = new ArrayList<>(Arrays.asList(Level1.class, Level2.class, Level3.class));
 		lvl = level_in;
 
 		String title = String.format("Candy Crush Saga - Level %d", levels.indexOf(levels.get(lvl)));
