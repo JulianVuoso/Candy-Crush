@@ -2,11 +2,11 @@ package game.backend;
 
 public abstract class GameState {
 	
-	private long score = 0;
-	private long requiredScore = 0;
-	private int moves = 0;
-	protected int extraCount = 0;
-	protected long lastScore = 0;
+	private long score;
+	private long requiredScore;
+	private int moves;
+	protected int extraCount;
+	protected long lastScore;
 
 	protected GameState(long requiredScore, int maxMoves){
 		this.requiredScore = requiredScore;

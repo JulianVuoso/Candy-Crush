@@ -83,6 +83,7 @@ public enum Figure {
 			} 
 			return e;
 		} catch(Exception e) {
+			//
 		}
 		return null;
 	}	
