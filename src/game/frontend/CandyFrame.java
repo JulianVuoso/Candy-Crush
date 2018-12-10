@@ -22,6 +22,9 @@ public class CandyFrame extends VBox {
 	static final int CELL_SIZE = 65;
 	static final double MENU_CELL = 0.5; // Relacion entre tamaño de menu y tamaño de cell
 	private static final int FRAME_GAP = 100;
+	private static final long TASTY_MIN_POINTS = 500;
+	private static final long DELICIOUS_MIN_POINTS = 850;
+	private static final long DIVINE_MIN_POINTS = 1200;
 
 	private static TonesManager tones;
 	private BoardPanel boardPanel;
@@ -116,11 +119,11 @@ public class CandyFrame extends VBox {
 
 	private void soundMaker(long score) {
 
-		if (score < 500) {
+		if (score < TASTY_MIN_POINTS) {
 			return;
-		} else if (score < 850) {
+		} else if (score < DELICIOUS_MIN_POINTS) {
 			tones.playTone("tasty");
-		} else if (score < 1200) {
+		} else if (score < DIVINE_MIN_POINTS) {
 			tones.playTone("delicious");
 		} else {
 			tones.playTone("divine");
