@@ -8,8 +8,6 @@ import java.util.Optional;
 
 public class AppMenu extends MenuBar {
 
-    static final int LEVELS = 3;
-
     public AppMenu() {
 
         Menu file = new Menu("Juego");
@@ -29,7 +27,7 @@ public class AppMenu extends MenuBar {
         });
 
         Stage stage = GameApp.getStage();
-        for (int i = 1; i <= LEVELS; i++) {
+        for (int i = 1; i <= GameApp.LEVELS; i++) {
             String levelTitle = String.format("Nivel %d", i);
             MenuItem levelItem = new MenuItem(levelTitle);
             int level = i;
