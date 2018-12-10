@@ -8,11 +8,13 @@ import java.util.Optional;
 
 public class AppMenu extends MenuBar {
 
+    static final int LEVELS = 3;
+
     public AppMenu() {
 
         Menu file = new Menu("Juego");
-
         MenuItem exitMenuItem = new MenuItem("Salir");
+
         exitMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Salir");
@@ -27,10 +29,11 @@ public class AppMenu extends MenuBar {
         });
 
         Stage stage = GameApp.getStage();
-        for(int i=1; i<4; i++){
+        for (int i = 1; i <= LEVELS; i++) {
             String levelTitle = String.format("Nivel %d", i);
             MenuItem levelItem = new MenuItem(levelTitle);
             int level = i;
+
             levelItem.setOnAction(event -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle(levelTitle);
@@ -53,12 +56,10 @@ public class AppMenu extends MenuBar {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Acerca De");
             alert.setHeaderText("Candy TPE");
-            alert.setContentText("Cátedra POO 2018.\n" +
-                    "Implementación Original: Laura Zabaleta (POO 2013).");
+            alert.setContentText("Cátedra POO 2018.\n" + "Implementación Original: Laura Zabaleta (POO 2013).");
             alert.showAndWait();
         });
         help.getItems().add(aboutMenuItem);
-
         getMenus().addAll(file, help);
     }
 

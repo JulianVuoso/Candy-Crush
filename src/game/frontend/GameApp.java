@@ -14,12 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.MediaException;
 import javafx.stage.Stage;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,24 +28,60 @@ public class GameApp extends Application {
 	private static final int BUTTON_OFFSET = 80;
 	static final int LEVELS = 3;
 
-	public static void main(String[] args) { launch(args); }
-
+	private Pane root = new Pane();
 	public static Stage stage = new Stage();
-	private static MediaPlayer mediaPlayer;
+	private static TonesManager tones = new TonesManager();
+	private  Stage primaryStage;
+	public static int lvl;
+
+	public static void main(String[] args) { launch(args); }
 
 	public static Stage getStage(){ return stage; }
 
 	@Override
 	public void start(Stage primaryStage) {
+		this.primaryStage = primaryStage;
 
+		setScene();
+		List<Class> levels = new ArrayList<>();
+		levels.addAll(Arrays.asList(Level1.class, Level2.class, Level3.class));
+		setButtons(levels);
+		tones.playTone("intro", 04, MediaPlayer.INDEFINITE);
+	}
+
+	public static void level (Stage primaryStage, int level_in){
+		CandyGame game = new CandyGame();
+		List<Class> levels = new ArrayList<>();
+		levels.addAll(Arrays.asList(Level1.class, Level2.class, Level3.class));
+		lvl = level_in;
+
+		String title = String.format("Candy Crush Saga - Level %d", levels.indexOf(levels.get(lvl)));
+
+		game.setLevelClass(levels.get(lvl-1));
+
+		CandyFrame frame = new CandyFrame(game);
+		Scene scene2 = new Scene(frame);
+		primaryStage.setTitle(title);
+		primaryStage.setResizable(false);
+		primaryStage.setScene(scene2);
+	}
+
+	private void setScene() {
 		final ImageView background = new ImageView("images/burblebackground.png");
 		primaryStage.getIcons().add(background.getImage());
-		Pane root = new Pane();
 		root.getChildren().add(background);
+		Scene scene = new Scene(root, CandyFrame.CELL_SIZE * Grid.SIZE,CandyFrame.CELL_SIZE * (Grid.SIZE + CandyFrame.MENU_CELL + LABEL_CELL)); // 715 * 773.5
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("Candy Crush Saga");
+		stage = primaryStage;
+		scene.setCursor(new ImageCursor(new Image("images/cursor.png"), 100,100));
+		primaryStage.show();
+	}
 
+	private void setButtons(List<Class> levels) {
 		DropShadow bShadow = new DropShadow();
-        List<Class> levels = new ArrayList<>();
 		List<Button> bList = new ArrayList<>();
+
 		for (int i = 0; i < LEVELS; i++) {
 			Button b = new Button();
 			b.setGraphic(new ImageView(String.format("images/lvl%d#y.png", i+1)));
@@ -63,22 +95,13 @@ public class GameApp extends Application {
 			root.getChildren().add(b);
 		}
 
-		Scene scene = new Scene(root, CandyFrame.CELL_SIZE * Grid.SIZE,CandyFrame.CELL_SIZE * (Grid.SIZE + CandyFrame.MENU_CELL + LABEL_CELL)); // 715 * 773.5
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("Candy Crush Saga");
-		stage = primaryStage;
-		scene.setCursor(new ImageCursor(new Image("images/cursor.png"), 100,100));
-		primaryStage.show();
-
-		levels.addAll(Arrays.asList(Level1.class, Level2.class, Level3.class));
-
 		for (int i = 0; i < bList.size(); i++) {
 			String title = String.format("Candy Crush Saga - Level %d", i+1);
 			int lvlAux = i;
 			bList.get(i).setOnAction(e->{
 				CandyGame game = new CandyGame(levels.get(lvlAux));
 				CandyFrame frame = new CandyFrame(game);
-				frame.setMediaPlayer(mediaPlayer);
+				frame.setTones(tones);
 				Scene scene2 = new Scene(frame);
 				primaryStage.setTitle(title);
 				primaryStage.setResizable(false);
@@ -86,40 +109,6 @@ public class GameApp extends Application {
 				lvl = lvlAux + 1;
 			});
 		}
-
-		final String TONE_PATH = "/tones/";
-		String musicFile = "intro.mp3";     // For example
-		Media sound = null;
-		try {
-			sound = new Media(getClass().getResource(TONE_PATH + musicFile).toURI().toString());
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		try {
-			mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.setAutoPlay(true);
-			mediaPlayer.setVolume(0.4);
-			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-			mediaPlayer.play();
-		} catch (MediaException e) {
-			System.out.println(musicFile);
-		}
-	}
-
-	public static int lvl;
-
-	public static void level (Stage primaryStage, int level_in){
-		lvl = level_in;
-		CandyGame game = new CandyGame();
-
-		List<Class> levels = new ArrayList<>();
-		levels.addAll(Arrays.asList(Level1.class, Level2.class, Level3.class));
-		game.setLevelClass(levels.get(lvl-1));
-
-		CandyFrame frame = new CandyFrame(game);
-		Scene scene2 = new Scene(frame);
-		primaryStage.setResizable(false);
-		primaryStage.setScene(scene2);
 	}
 
 }
