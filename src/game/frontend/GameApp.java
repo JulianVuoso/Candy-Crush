@@ -53,7 +53,7 @@ public class GameApp extends Application {
 		List<Class> levels = new ArrayList<>(Arrays.asList(Level1.class, Level2.class, Level3.class));
 		lvl = level_in;
 
-		String title = String.format("Candy Crush Saga - Level %d", levels.indexOf(levels.get(lvl)));
+		String title = String.format("Candy Crush Saga - Level %d", levels.indexOf(levels.get(lvl-1)));
 
 		game.setLevelClass(levels.get(lvl-1));
 
