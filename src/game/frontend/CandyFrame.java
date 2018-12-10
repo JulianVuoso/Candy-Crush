@@ -26,7 +26,7 @@ public class CandyFrame extends VBox {
 	private static final long DELICIOUS_MIN_POINTS = 850;
 	private static final long DIVINE_MIN_POINTS = 1200;
 
-	private TonesManager tones;
+	private TonesManager tones = new TonesManager();
 	private ImageManager images;
 
 	private BoardPanel boardPanel;
@@ -130,10 +130,6 @@ public class CandyFrame extends VBox {
 				tones.playTone("divine");
 			}
 		}
-	}
-
-	public void setTones(TonesManager tones) {
-		this.tones = tones;
 	}
 
 	private void wrongMoveAlert() {

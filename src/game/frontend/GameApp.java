@@ -99,7 +99,6 @@ public class GameApp extends Application {
 			bList.get(i).setOnAction(e->{
 				CandyGame game = new CandyGame(levels.get(lvlAux));
 				CandyFrame frame = new CandyFrame(game);
-				frame.setTones(tones);
 				Scene scene2 = new Scene(frame);
 				primaryStage.setTitle(title);
 				primaryStage.setResizable(false);
