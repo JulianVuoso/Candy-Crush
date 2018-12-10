@@ -6,7 +6,7 @@ public abstract class GameState {
 	private long requiredScore;
 	private int moves;
 	protected int extraCount;
-	protected long lastScore;
+	private long lastScore;
 
 	protected GameState(long requiredScore, int maxMoves){
 		this.requiredScore = requiredScore;
