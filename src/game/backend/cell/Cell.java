@@ -62,7 +62,7 @@ public class Cell {
 		if (content.isMovable()) {
 			Direction[] explosionCascade = content.explode();
 			grid.cellExplosion(content);
-			// Se remueve el extra si corresponde
+			// Se remueve el extra si corresponde hacerlo
 			if (hasExtra() && grid.isStarted()) {
 				breakExtra();
                 grid.removeExtra();
