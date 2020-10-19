@@ -1,5 +1,5 @@
-# TPF
-Trabajo Practico Final Candy Crush
+# Candy Crush - Java FX
+Trabajo Practico Final - Programacion Orientada a Objetos
 
 Juego desarrollado en Java con JavaFX por:
 
